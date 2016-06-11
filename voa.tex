@@ -1,0 +1,249 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tgpagella}
+\usepackage[euler-digits]{eulervm}
+\usepackage{tikz-cd}
+\author{William Schlieper}
+\title{Vertex Operator Algebras}
+\newcommand{\RR}{\mathbold{R}}
+\newcommand{\CC}{\mathbold{C}}
+\newcommand{\ZZ}{\mathbold{Z}}
+\newcommand{\FF}{\mathbold{F}}
+\newcommand{\QQ}{\mathbold{Q}}
+\newcommand{\CP}{\mathbold{CP}}
+\newcommand{\vac}{|0\rangle}
+\newcommand{\Hh}{\mathcal{H}}
+\newcommand{\Oo}{\mathcal{O}}
+\newcommand{\Kk}{\mathcal{K}}
+\newcommand{\Dd}{\mathcal{D}}
+\newcommand{\Aa}{\mathcal{A}}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\End}{End}
+\begin{document}
+\maketitle
+This document is a reconstruction based on my notes of the vertex operator algebra seminar
+that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation has been changed (in particular, for the Heisenberg Fock space), some commentary has been added to my handwritten notes, and some definitions and concepts have been moved around, so as to make things more clear for the reader.
+
+\tableofcontents
+
+\section{Introduction (Raphaël Rouquier, March 30)}
+\label{sec:intro}
+
+\subsection{Motivation}
+\label{sec:mot}
+(can probably load this section with references, really)
+Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
+\[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
+correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
+\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (year))}
+\label{sec:monmoon}
+There is a natural graded representation
+\[V^\natural = V_0 \oplus V_1 \oplus ... \]
+of the Monster group $M$ such that
+\[j(\tau)-744=q^{-1}+\sum_{i=0}^{\infty} \dim V_i q^{i+1}. \]
+Furthermore, for $g \in M$, the graded character
+\[Tr_{V^\natural}(g;\tau)=q^{-1}+\sum_{i=0}^{\infty} Tr_{V_i}(g) q^{i+1} \]
+is a modular function; that is, for some finite index subgroup of $SL_2(\ZZ)$ acting on $\tau$ by Möbius transformations, $Tr_{V^\natural}(g;\tau)$ is left invariant.
+
+\subsection{Vertex Operator Algebras and Conformal Field Theories}
+This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (some Kac reference goes here) is linked to modular forms as well.
+
+In fact, vertex operator algebras are related to conformal field theory in $2$ dimensions, where the relevant local symmetries, described in terms of a complex number $z$, cleanly split into the symmetries holomorphic in $z$ and those holomorphic in $\overline{z}$; each of these will correspond to a VOA, and the CFT as a whole will link to a bimodule over both.  For more of this from a physics point of view, there's probably a good physics paper I can reference, and the ``full'' version of this will do so.
+
+\subsection{Formal power series}
+
+Unlike the definitions preferred by physicists, the vertex operator algebra is an algebraic construction based on formal power series, so it is more abstract.  An important space of ``functions'' in this characterization is the \textit{formal distributions} $\CC[[z^{\pm 1}]]$, which consists of all abstract sums
+\[a(z)=\sum_{n \in \ZZ} a_n z^n \quad a_n \in \CC. \]
+Note that $\CC[[z^{\pm 1}]]$ is \textit{not} a ring; for instance, try to multiply the sum $\sum_{n \in \ZZ} z^n$ with itself.  However, for any Laurent polynomial $P(z) \in \CC[z^{\pm 1}]$ it is possible to multiply $P(z)$ with $a(z)$ and get another formal distribution; furthermore, there exists a natural residue
+\[\Res_{z=0} a(z)=\Res_z a(z)=a_{-1} \]
+which corresponds to the one defined for functions holomorphic on $\CC^\times$ using a contour integral; the name formal distributions comes from the fact that multiplying and using the residue gives a natural definition of $\CC[[z^{\pm 1}]]$ as a linear dual to the test functions $\CC[z^{\pm 1}]$.
+
+Another way two power series $a(z),b(z) \in \CC[[z^{\pm 1}]]$ can be multiplied is simply to apply them to different variables: the product is simply
+\[a(z)b(w)=\sum_{m \in \ZZ}a_mz^m \cdot \sum_{n \in \ZZ}b_nw^n \in \CC[[z^{\pm 1},w^{\pm 1}]], \]
+where the formal distributions in two variables are defined in a similar way to those in one.
+
+The immediate question to ask, for any two-variable formal distribution, is: what happens when $z$ approaches $w$?  As is easy to see, this cannot be calculated directly, especially in the cases we are most interested in.  In particular, consider the formal version of the Dirac delta function
+\[\delta(z,w)=\sum_{n \in \ZZ} z^n w^{-n-1} \]
+which has, much like the Dirac delta function used in analysis, the property that for any Laurent polynomial $P(z) \in \CC[z^{\pm 1}]$, we have
+\[P(z) \delta(z,w) = P(w) \delta(z,w). \]
+Also like the Dirac delta function, we have:
+\begin{align*}
+  (z-w) \delta(z,w) &= 0\\
+  (z-w)^m \left(\frac{\partial}{\partial z} \right)^n (\delta(z,w))&=0 \quad m>n
+\end{align*}
+This property of the derivatives of the formal delta function is important, as it implies a value that can be thought of as zero outside of $z=w$; a two-variable formal distribution $a(z,w) \in \CC[[z^{\pm 1},w^{\pm 1}]]$ is called \textit{local} if
+\[(z-w)^n a(z,w)=0 \]
+for some $n \ge 0$.
+
+\subsection{Vertex algebras}
+
+(not sure if I want to put the actual VA def here or later; probably mention ``creation of boson''?)
+
+The simplest case of a vertex algebra is a commutative one, where the locality condition on the vertex operators is strengthened to actual commutation, or, equivalently, all negative-degree terms are zero.  In this case, we have
+\[Y(A,z)=\sum_{n=0}^{\infty} \frac{z^n}{n!}(T^nA) \]
+where $T^nA \in V$ corresponds to an endomorphism of $V$ from a commutative algebra structure on $V$.
+
+Non-commutative vertex algebras, however, are already difficult to write down even in the simplest cases and require heavy use of the technique of normal ordering of infinite sums to produce a valid field.
+
+In order to properly relate the purely formal vertex algebra structure to the more geometric structures implied by conformal field theory, one must add extra structure to the vertex algebra.  Let $c \in \CC$; a \textit{vertex operator algebra with central charge $c$} is a vertex algebra with a $\ZZ$-grading (isn't the grading part of the VA def?) and a specific element
+\[\omega \in V_2 \quad Y(\omega,z) =: \sum_{n \in \ZZ} L_n z^{-n-2} \]
+where the Fourier coefficients $L_n$ satisfy the Virasoro relations
+\[[L_m,L_n]=(m-n)L_{m+n}+\frac{c}{12}(m^3-m)\delta_{m,-n} id, \]
+the operator $L_{-1}=T$ identifies a lift of $-t^0\partial_t$ with the translation operator, and $L_0|_{V_n}=n \cdot id$ identifies a lift of $-t\partial_t$ with the grading operator.
+
+\subsection{Vertex operator algebras and geometry}
+Given a vertex operator algebra, one can connect it to the geometry of algebraic curves in various interrelated ways.  By the mechanisms of algebraic geometry, the fields of a vertex operator algebra $V$ can be thought of as being $\End V$-valued functions on a formal disk; the challenge is to figure out how best to extend these to algebraic curves.
+
+Given a vertex operator algebra $V$, a projective algebraic curve $X$, and a finite collection of representations $M_1,...,M_n$ attached to points $x_1,...,x_2 \in X$, there is a vector space called the space of conformal blocks consisting of functionals for which the process of multiplying an element can be extended from punctured formal neighborhoods of the $x_i$s to the curve $X$ with the points $x_i$ removed.  In fact, using the full Virasoro action, one can extend this from a vector space to the full structure of a (twisted) $\Dd$-module on the moduli space $\mathcal{M}_{g,n}$ of genus $g$ algebraic curves with $n$ points.
+
+In particular, given $X=\CP^1$, points $0,1,\infty$, and $V$ itself attached at $0$ and $1$ and the restricted dual $V^\wedge$ attached at $\infty$, the vertex operators themselves turn out to be conformal blocks; if more points are attached, then the corresponding conformal blocks will turn out to be the composed vertex operators, which can be combined into an operadic approach.
+
+(think about how to summarize factorization and chiral algebras (Beilinson-Drinfeld) when it's not 10:30 pm)
+
+(probably mention rational VOAs here?  I think I might wait 'til I see what Kevin has planned)
+
+\subsection{Examples}
+\begin{itemize}
+\item Given an affine Lie algebra and a level $k$, one can construct a vertex algebra whose representations are representations of the affine Lie algebra at level $k$; when $k \ne - h^\wedge$, this is a vertex operator algebra.  When $k$ is also a positive(?) integer, then 
+\item There is a construction that, given an even integral lattice, produces a rational vertex operator algebra.  In this case, the graded character of a representation can be expressed naturally in terms of theta functions.  If the lattice is a root lattice of type $ADE$, then the corresponding lattice VOA is isomorphic to the rational vertex operator algebra derived from the corresponding level $1$ affine Lie algebra VOA.
+\item When the lattice used in the lattice construction is the Leech lattice, there is an involution acting as $-1$ on level $1$ elements.  When one takes the subset of the lattice VOA preserved by that involution, this itself is a VOA; taking the direct sum of this VOA with another representation of it acts as a twisted VOA which produces the Monster vertex operator algebra $V^\natural$.
+\end{itemize}
+
+\section{Vertex algebras: definition and Heisenberg (Jeremy Brightbill, April 13)}
+\label{sec:defheis}
+
+\subsection{Formal distributions}
+(is this section redundant with the intro section?)
+Let $R$ be a $\CC$-algebra.  Then, for any integer $n$, the \textit{$R$-module of formal distributions} $R[[z_1^{\pm 1},...,z_n^{\pm 1}]]$ can be defined simply as the set of $\ZZ^n$-tuples of elements of $R$, thought of accordingly as formal power series extending in all directions.  Formal distributions generally do not form a ring; however, given two formal distributions $a(z),b(z) \in R[[z]]$ defined as
+\begin{align*}
+  a(z)&=\sum_{n \in \ZZ}a_nz^n\\
+  b(z)&=\sum_{n \in \ZZ}b_nz^n
+\end{align*}
+there is a product in \textit{different} variables
+\[a(z)b(w) = \sum_{m,n \in \ZZ}a_mb_nz^mw^n. \]
+Furthermore, the $R$-module structure can be extended to $R[z_1^{\pm 1},...,z_n^{\pm 1}]$ by multiplying and interleaving the finite with the infinite sum.
+
+(mention the formal delta function again?)
+
+To ``evaluate'' formal distributions, since getting any actual values in the context of infinite power series is impossible, the correct idea is instead to use the residue as the formal version of the integral around a small circle around $0$: as such, 
+\[\Res_{z=0}a(z)=a_{-1} \]
+and, in fact, for vertex algebra purposes it makes more sense to number formal distributions using the residue, which we will denote as
+\begin{align*}
+  a(z)&=\sum_{n \in \ZZ}a_{(n)}z^{-n-1}\\
+  a_{(n)}&=\Res_{z=0}
+\end{align*}
+
+\subsection{Fields and locality}
+Let $V$ be a vector space over $\CC$.  We define a \textit{field} to be an element
+\[A(z) \in \End_\CC(V)[[z^{\pm 1}]] \quad A(z)=\sum_{n \in \ZZ} A_{(n)}z^{-n-1} \]
+of formal distributions over the endomorphisms of $V$, such that, for all $v \in V$ there exists an $N$ such that $A_{(n)}v=0$ for all $n>N$; that is, 
+\[A(z)v \in V((z)) \quad \forall v \in V. \]
+Note that $A$ being a field is a weaker condition than $A$ being a formal Laurent series over $\End(V)$; the latter would include a global $N$ for all $v \in V$.  Furthermore, to work over $\CC$, we can consider a pair of $\varphi \in V^*, v \in V$, and note that the evaluation
+\[\langle \varphi, A(z)v \rangle \in \CC((z)) \]
+is itself a formal Laurent series.
+
+If $V$ is also $\ZZ$-graded, then a field $A(z)$ is said to have \textit{conformal dimension} $N \in \ZZ$ if $A_{(n)}$ is homogeneous of degree $-n+N-1$; that is, if $z$ is thought of as having degree $-1$, then a conformal dimension $N$ field will be homogeneous of degree $N$.
+
+Given two fields $A(z),B(w)$, we would like to be able to compare $A(z)B(w)$ and $B(w)A(z)$.  However, for them to be equal as formal distributions over $\End V$ is a very strong condition.  Given $v \in V, \varphi \in V^*$, we'd like to compare the two expressions
+\begin{align}
+  \langle \varphi, A(z)B(w) v \rangle &\in \CC((z))((w)) \label{expansion1}\\
+  \langle \varphi, B(w)A(z) v \rangle &\in \CC((w))((z)). \label{expansion2}
+\end{align}
+(might be able to add some more about why they lie in the given formal Laurent series)
+For these to be equal as formal distributions in two variables, they must both be expressible as elements of $\CC[[z,w]][z^{-1},w^{-1}]$, which is a very strong constraint on the possible coefficients of the two fields for negative powers of $z$ and $w$.  For example, consider the function $1/(z-w)$.  It can be expanded into formal power series in two ways, depending on whether it is expanded in $z$ or $w$:
+\begin{align}
+  \frac{1}{z-w}&=\sum_{n<0}z^nw^{-n-1} \in \CC((z))((w))\\
+  \frac{1}{z-w}&=-\sum_{n \ge 0}z^nw^{-n-1} \in \CC((w))((z)).
+\end{align}
+Notice that the difference between the two power series is precisely the formal delta function mentioned before.  Indeed, the diagram
+\[
+  \begin{tikzcd}
+    \CC[[z,w]][z^{-1},w^{-1},(z-w)^{-1}] \arrow[r,hook,"\textrm{expand at }w"] \arrow[d,hook,"\textrm{expand at }z"] & \CC((z))((w)) \arrow[d,hook,"\textrm{inclusion}"]\\
+    \CC((w))((z))\arrow[r,hook,"\textrm{inclusion}"]& \CC[[z^{\pm 1},w^{\pm 1}]]
+  \end{tikzcd}
+\]
+does \textit{not} commute!  However, the difference between the two maps will always be local in the sense that multiplyng some power of $(z-w)$ will take it to zero, thus providing an alternate characterization of locality.
+\subsubsection{Definition (locality)}
+Let $A(z),B(z) \in \End (V)[[z^{\pm 1}]]$ be fields over a vector space $V$.  We say that $A(z)$ and $B(w)$ are local with respect to each other if, for all $v \in V, \varphi \in V*$ there exists
+\[f_{v,\varphi} \in \CC[[z,w]][z^{-1},w^{-1},(z-w)^{-1}] \]
+such that the expressions (\ref{expansion1}) and (\ref{expansion2}) are both expansions of $f_{v,\varphi}$, and that the order of the pole of $(z-w)$ in $f_{v,\varphi}$ is uniformly bounded. (The uniform bound doesn't seem true of $Y(A,z)Y(B,w)=Y(Y(A,z-w)B,w)$ but Ben-Zvi,Frenkel says it's true.  Am I confused?)
+
+Note that locality is not in fact a trivial condition even in the case $A=B$.
+
+\subsubsection{Proposition}
+$A(z)$ and $B(w)$ are local if and only if there exists an $N$ such that $(z-w)^N[A(z),B(w)]=0$ as elements of $\End(V)[[z^{\pm 1},w^{\pm 1}]]$.
+
+\subsection{Vertex Algebras}
+
+\subsubsection{Definition}
+A \textit{vertex algebra} consists of the following data:
+\begin{itemize}
+\item A vector space $V$ over $\CC$.
+\item A distinguished element $\vac \in V$, called the \textit{vacuum vector}.
+\item A linear map $T: V \rightarrow V$ called \textit{translation}.
+\item A linear map $Y(-,z): V \rightarrow \End(V)[[z^{\pm 1}]]$ such that for any $A \in V$, the formal distribution
+  \[Y(A,z)=\sum_{n \in \ZZ} A_{(n)} \]
+  is a field.  These are called the \textit{vertex operators}.
+\end{itemize}
+satisfying the following properties:
+\begin{itemize}
+\item The vacuum axiom:
+  \begin{align}
+    Y(\vac,z)&=id_Vz^0\\
+    Y(A,z)\vac &\in V[[z]],\\
+    Y(A,z)\vac|_{z=0}&=A\quad \forall A \in V.
+  \end{align}
+\item The translation axiom:
+  \begin{align}
+    T \vac &= 0\\
+    [T,Y(A,z)]&=\partial_z Y(A,z)
+  \end{align}
+\item The locality axiom: For all $A,B \in V$, the fields $Y(A,z)$ and $Y(B,w)$ are local to one another.
+\end{itemize}
+
+\subsubsection{Graded vertex algebras}
+A vertex algebra $V$ is ($\ZZ-$)graded if:
+\begin{itemize}
+\item $V$ is $\ZZ$-graded; i.e.
+  \[V = \bigoplus_{n \in \ZZ} V_n \]
+\item $\vac \in V_0$
+\item $T$ is homogeneous of degree $1$; that is, $TV_n \subseteq V_{n+1}$
+\item $Y(A,z)$ has conformal dimension $m$ for all $A \in V_m$
+\end{itemize}
+Most of the vertex algebras seen in the wild are graded; in particular, a vertex operator algebra is by definition a graded vertex algebra.
+
+\subsubsection{Vertex algebra homomorphisms}
+A homomorphism
+\[\rho: (V,\vac,T,Y(-,z)) \rightarrow (V',\vac',T',Y'(-,z)) \]
+is a linear map $\rho: V \rightarrow V'$ such that:
+\begin{align}
+  \rho \circ T &= T'\circ \rho\\
+  \rho(Y(A,z)B)&=Y'(\rho(A),z)\rho(B) \quad \forall A,B \in V
+\end{align}
+This definition of a vertex algebra morphism also lets you define, straightforwardly, the idea of a subalgebra, that of a quotient, and that of an ideal as the kernel of a quotient.
+
+Furthermore, one can define the tensor product of two vertex algebras such that $V \rightarrow V \otimes W$ and $W \rightarrow V \otimes W$ are vertex algebra homomorphisms.
+
+\subsubsection{Properties of vertex algebras}
+By the translation and vacuum axioms, we have
+\begin{align}
+  A_{(-2)}\vac &= \partial_z Y(A,z) \vac |_{z=0}\\
+  &=[T,Y(A,z)]\vac|_{z=0}\\
+  &=TA.
+\end{align}
+Similarly, $T^nA=n!A_{(-n-1)}\vac$.  Equivalently,
+\[Y(A,z) \vac = \sum_{n=0}^\infty \frac{1}{n!} T^nA z^n = e^{zT}A \]
+which can be interpreted as relating $T$ to translation, as interpreting $\exp$ of operators in the same way with differentials gives the relation $e^{w \partial_z}f(z)=f(z+w)$ for $f$ a polynomial.
+
+In general, if $Y(A,z)=A_{(-1)}z^0$ for all $A \in V$, then $T=0$, $Y: V \rightarrow \End(V)$ will simply be the map taking an element to left-multiplication by it, locality implies commutativity, and $V$ picks up the structure of a commutative algebra with unit.
+
+If $Y(A,z)$ and $Y(B,w)$ commute for all $A,B \in V$, then all vertex operators will lie in $\End(V)[[z]]$ and multiplication can be defined as
+\[A \circ B = Y(A,z)B|_{z=0}. \]
+Using this multiplication, $V$ is a commutative algebra, with $T$ acting as a derivation, and
+\[Y(A,z)B=e^{zT}A \circ B \quad \forall A,B \in V \]
+(need to double-check to see if I need parentheses)
+\end{document}
+\end{document}
