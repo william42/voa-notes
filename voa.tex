@@ -22,10 +22,12 @@
 \newcommand{\Aa}{\mathcal{A}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
+\newcommand{\ghat}{\widehat{\mathfrak{g}}}
 \newcommand{\normord}[1]{:\mathrel{#1}:}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Der}{Der}
 \begin{document}
 \maketitle
 This document is a reconstruction based on my notes of the vertex operator algebra seminar
@@ -275,6 +277,7 @@ Note that it is possible to give the Heisenberg algebra a ``triangular decomposi
 \[H \simeq_{\CC-Mod} t^{-1}\CC[t^{-1}] \oplus \one \oplus \CC[[t]].  \]
 
 \subsubsection{The Fock space}
+\label{sec:fockspace}
 
 Let $\CC_0$ be the one-dimensional representation of $\CC \cdot\one \oplus \CC[[t]]$ that is acted on by $\CC[[t]]$ trivially and by $\one$ by $1$.  Then, we define the \textit{Heisenberg vertex algebra} or \textit{Fock space} as
 \[\pi:=\Ind_{\CC \cdot \one \oplus \CC[[t]]}^H\CC_0=U(H) \otimes_{U(\CC \cdot \one \oplus \CC[[t]]}\CC_0. \]
@@ -375,6 +378,7 @@ For other $Y(b_{-k}\vac,z)$, simply note that the multiple derivatives will be k
 \subsubsection{Dong's Lemma}
 Suppose that $A(z),B(w),C(u)$ are mutually local fields.  Then, $\normord{A(w)B(w)}$ and $C(u)$ are local to each other.
 \subsubsection{Reconstruction theorem}
+\label{sec:recthm}
 This process of generating the vertex operators from the single vertex operator $b(z)$ can be generalized to a more general theorem building up a vertex operator algebra from a distinguished set of vertex operators.
 
 Let $V$ be a vector space, and fix the following:
@@ -406,6 +410,98 @@ Then, there is a vertex algebra structure on $V$ given by the equation
 \section{Lattice vertex algebras and affine algebras (Dustan Levenstein, April 20)}
 \label{sec:latticeaffine}
 
+\subsection{Affine Kac-Moody algebras}
+Let $\gf$ be a finite-dimensional simple Lie algebra over $\CC$.  Define the \textit{loop algebra} as
+\begin{align*}
+  L\gf=\gf((t))&=\gf \otimes \CC((t))\\
+  [A \otimes f(t),B \otimes g(t)]&=[A,B] \otimes f(t)g(t)
+\end{align*}
+The \textit{affine Lie algebra} or \textit{affine Kac-Moody algebra}(doesn't the latter also have a derivation?) $\ghat$ is defined as a central extension of $L\gf$
+\[0 \rightarrow \CC \cdot K \rightarrow \ghat \rightarrow L\gf \rightarrow 0 \]
+as follows: first, we need an invariant form on $\gf$.  Start with the Killing form
+\[(x,y)_K=Tr_\gf(ad_xad_y) \]
+and normalize using the \textit{dual Coxeter number} $h^\vee$
+\[(x,y)=\frac{1}{2h^\vee}(x,y)_K; \]
+this invariant form has the property that if $v$ is a maximum-length root vector, $(v,v)=2$; also, if $\gf=\mathfrak{sl}_n$, then $(x,y)=Tr_{\CC^n}(xy)$ for $\CC^n$ the natural representation.
+
+To define $\ghat$, use the natural vector space splitting of $L\gf$ and deform the Lie bracket to
+\[[A \otimes f(t),B \otimes g(t) = [A,B] \otimes f(t)g(t) - \Res_{t=0}(f\,dg) (A,B)K. \]
+
+\subsection{The vacuum representation of $\ghat$}
+Much like the Heisenberg vertex algebra, observe the decomposition
+\[\ghat = t^{-1}\gf[t^{-1}] \oplus \CC \cdot K \oplus \gf[[t]] \]
+where $\gf[[t]]$ is defined in analogy to $\gf((t))$.  Let $k \in \CC$; define $\CC_k$ to be the representation of $\gf[[t]] \oplus \CC \cdot K$ on which $\gf[[t]]$ acts by $0$ and $K$ acts by $k$.  Similarly to the construction of the Heisenberg vertex algebra in (\ref{sec:fockspace}), we define the \textit{vacuum representation at level $k$} as follows:
+\[V_k(\gf):=\Ind_{\CC \cdot K \oplus \gf[[t]]}^{\ghat}\CC_k = U(\ghat) \otimes_{U(\CC \cdot K \oplus \gf[[t]]}\CC_k. \]
+Again, let $\vac$ be the canonical vector $1 \otimes 1$ killed by $\gf[[t]]$; to define a basis for $V_k(\gf)$, we first let $d=\dim \gf$, let $\{J^1,...,J^d\}$ be a basis for $\gf$, define the topological basis
+\[\{J^a_n=J^a \otimes t^n|1 \le a \le d, n \in \ZZ \} \]
+for $\ghat$.  With this, we can use the Poincaré-Birkhoff-Witt theorem to find a basis
+\[J^{a_1}_{n_1}...J^{a_m}_{n_m}\vac \quad n_1 \le ... \le n_m < 0 \quad a_i \le a_{i+1} \textrm{ when }n_i=n_{i+1} \]
+for $V_k(\gf)$.
+
+Give $V_k(\gf)$ a vertex algebra structure as follows:
+\begin{itemize}
+\item Give $V_k(\gf)$ a grading such that $\deg \vac=0$ and $J^a_n$ has degree $n$,
+\item $\vac$, as expected, is the vacuum vector,
+\item $T\vac=0, [T,J^a_n]=-nJ^a_{n-1}$ will be sufficient to define $T$,
+\item $Y(\vac,z)=id$,
+\item \[Y(J^a_{-1}\vac,z)=J^a(z):=\sum_{n \in \ZZ}J^a_nz^{-n-1}, \]
+\item and note that the conditions for the reconstruction theorem in (\ref{sec:recthm}) hold, giving the structure.
+\end{itemize}
+Note that $J^a(z)$ can be thought of as a pullback of the operator $\sum_{n \in \ZZ}(J^a \otimes t^n)z^{-n-1}$ which ``looks like'' $J^a\delta(t,z)$, making it an ``operator-valued $\delta$ function''.
+\subsection{The Virasoro algebra}
+\label{sec:virasoro}
+Let $\Oo=\CC[[t]]$ and $\Kk=\CC((t))$.  Define the Lie algebra of derivations of $\Kk$ as $\Der \Kk = \CC((t)) \partial_t$, and define the \textit{Virasoro Lie algebra} as the central extension
+\[0 \rightarrow \CC \cdot C \rightarrow Vir \rightarrow \Der \Kk \rightarrow 0 \]
+such that
+\[[f(t)\partial_t,g(t)\partial_t]=(fg'-f'g)\partial_t+\frac{1}{12}(\Res_{t=0}fg'''\,dt)C. \]
+
+There exists a topological basis of $Vir$ by $C$ and $L_n=-t^{n+1}\partial_t$ for $n \in \ZZ$, with commutation relations
+\[[L_n,L_m]=(n-m)L_{n+m}+\frac{n^3-n}{12} \delta_{n,-m}C. \]
+
+Note that this definition depends on the coordinates; there exists a coordinate-free version of the Virasoro algebra, as $H^2(\Der \Kk)=\CC$ so it is essentially unique (aside from the constant $1/12$), but there does not exist a coordinate-free \textit{splitting} of the algebra.
+
+Define
+\[T(z) := \sum_{n \in \ZZ}L_nz^{-n-2}; \]
+then the Virasoro commutation relations can be summed up as
+\[[T(z),T(w)]=\frac{C}{12}\partial^3_w \delta(z,w)+zT(w)\partial_w\delta(z-w)+\partial_wT(w)\delta(z-w). \]
+In particular, $T(z)$ is local to itself.
+
+Let $c \in \CC$. To define the \textit{Virasoro vertex algebra} $Vir_c$, start with the subalgebra $\Der \Oo=\CC[[t]]\partial_t$ and the representation $\CC_c$ on which $\Der \Oo$ acts as $0$ and $C$ acts by $c$; we then have
+\[Vir_c=\Ind_{\Der \Oo \oplus \CC \cdot C}^{Vir}\CC_c. \]
+We call $c$ the \textit{central charge} and say that $Vir_c$ has central charge $c$.
+
+The vertex algebra structure is as follows:
+\begin{itemize}
+\item $\vac$ is simply the vector $1 \otimes 1$ in the tensor definition of $\Ind$.
+\item $Vir_c$ has a Poincaré-Birkhoff-Witt basis
+\[L_{j_1}...L_{j_m}\vac \quad j_1\le ... \le j_m < -1. \]
+\item $\deg \vac=0, \deg L_n=-n$ is sufficient to give a grading on the algebra
+\item $T=L_{-1}$
+\item \[Y(L_{-2}\vac,z)=T(z)=\sum_{n \in \ZZ}L_nz^{-n-2}. \]
+\item These are the necessary conditions for the reconstruction theorem in \ref{sec:recthm} for $S$ the singleton defining $L_{-2}\vac$ to determine the vertex algebra structure on $Vir_c$.
+\end{itemize}
+
+\subsection{Vertex operator algebras}
+A vertex algebra $V$ is called \textit{conformal} or a \textit{vertex operator algebra} of central charge $c$ if we have a vector $\omega \in V_2$ such that the operators $L^V_n$ defined by
+\[Y(\omega,z)=\sum_{n \in \ZZ}L^V_n z^{-n-2} \]
+satisfy the Virasoro relations with central charge $c$; furthermore, $L^V_{-1}=T$, and $L^V_{0}|_{V_n}=n\cdot id$, relating $L_0$ to the grading.
+
+The vector $\omega$ is called a \textit{conformal vector}.
+
+Examples of vertex operator algebras include:
+\begin{itemize}
+\item $Vir_c$ itself, with $\omega=L_{-2}$.
+\item The Heisenberg Fock space $\pi$ has a one-parameter family of conformal vectors: given $\lambda \in \CC$,
+\[\omega_\lambda=\left(\frac{1}{2}b_{-1}^2+\lambda b_{-2}\right)\vac \]
+is a conformal vector with central charge $c=1-12\lambda^2$.
+\item $V_k(\gf)$ has a conformal vector in the case where $k \ne -h^\vee$, using what is called the Sugawara construction.
+
+Given $d=\dim \gf$, pick a basis $J^1,...,J^d$ of $\gf$, and let $J_1,...,J_d$ be the dual basis of $\gf$ defined such that $(J^i,J_j)=\delta_{i,j}$ for the bilinear form defined earlier.  Define the \textit{Sugawara operator} as
+\[S:=\frac{1}{2} \sum_{a=1}^d J^a_{-1}(J_a)_{-1} \vac, \]
+which is independent of the basis chosen.  Then, $(1/(k+h^\vee))S$ is a conformal vector with conformal charge
+\[c=\frac{k \dim \gf}{k+h^\vee}. \]
+(At the \textit{critical level} $k=-h^\vee$, the operators $S_{(j)}$ mutually commute instead of forming the Virasoro algebra.)
+\end{itemize}
 
 \end{document}
  
