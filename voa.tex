@@ -6,6 +6,8 @@
 \usepackage{tgpagella}
 \usepackage[euler-digits]{eulervm}
 \usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{hyperref}
 \author{William Schlieper}
 \title{Vertex Operator Algebras}
 \newcommand{\RR}{\mathbold{R}}
@@ -22,8 +24,10 @@
 \newcommand{\Aa}{\mathcal{A}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
+\newcommand{\hh}{\mathfrak{h}}
 \newcommand{\ghat}{\widehat{\mathfrak{g}}}
 \newcommand{\normord}[1]{:\mathrel{#1}:}
+\newcommand{\tk}{\textcolor{red}{*}}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
@@ -40,11 +44,11 @@ that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation ha
 
 \subsection{Motivation}
 \label{sec:mot}
-(can probably load this section with references, really)
+(\tk can probably load this section with references, really)
 Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
 \[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
 correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
-\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (year))}
+\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (\tk year))}
 \label{sec:monmoon}
 There is a natural graded representation
 \[V^\natural = V_0 \oplus V_1 \oplus ... \]
@@ -55,7 +59,7 @@ Furthermore, for $g \in M$, the graded character
 is a modular function; that is, for some finite index subgroup of $SL_2(\ZZ)$ acting on $\tau$ by Möbius transformations, $Tr_{V^\natural}(g;\tau)$ is left invariant.
 
 \subsection{Vertex Operator Algebras and Conformal Field Theories}
-This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (some Kac reference goes here) is linked to modular forms as well.
+This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (\tk some Kac reference goes here) is linked to modular forms as well.
 
 In fact, vertex operator algebras are related to conformal field theory in $2$ dimensions, where the relevant local symmetries, described in terms of a complex number $z$, cleanly split into the symmetries holomorphic in $z$ and those holomorphic in $\overline{z}$; each of these will correspond to a VOA, and the CFT as a whole will link to a bimodule over both.  For more of this from a physics point of view, there's probably a good physics paper I can reference, and the ``full'' version of this will do so.
 
@@ -86,7 +90,7 @@ for some $n \ge 0$.
 
 \subsection{Vertex algebras}
 
-(not sure if I want to put the actual VA def here or later; probably mention ``creation of boson''?)
+(\tk not sure if I want to put the actual VA def here or later; probably mention ``creation of boson''?)
 
 The simplest case of a vertex algebra is a commutative one, where the locality condition on the vertex operators is strengthened to actual commutation, or, equivalently, all negative-degree terms are zero.  In this case, we have
 \[Y(A,z)=\sum_{n=0}^{\infty} \frac{z^n}{n!}(T^nA) \]
@@ -107,9 +111,9 @@ Given a vertex operator algebra $V$, a projective algebraic curve $X$, and a fin
 
 In particular, given $X=\CP^1$, points $0,1,\infty$, and $V$ itself attached at $0$ and $1$ and the restricted dual $V^\wedge$ attached at $\infty$, the vertex operators themselves turn out to be conformal blocks; if more points are attached, then the corresponding conformal blocks will turn out to be the composed vertex operators, which can be combined into an operadic approach.
 
-(think about how to summarize factorization and chiral algebras (Beilinson-Drinfeld) when it's not 10:30 pm)
+(\tk think about how to summarize factorization and chiral algebras (Beilinson-Drinfeld) when it's not 10:30 pm)
 
-(probably mention rational VOAs here?  I think I might wait 'til I see what Kevin has planned)
+(\tk probably mention rational VOAs here?  I think I might wait 'til I see what Kevin has planned)
 
 \subsection{Examples}
 \begin{itemize}
@@ -122,7 +126,7 @@ In particular, given $X=\CP^1$, points $0,1,\infty$, and $V$ itself attached at 
 \label{sec:defheis}
 
 \subsection{Formal distributions}
-(is this section redundant with the intro section?)
+(\tk is this section redundant with the intro section?)
 Let $R$ be a $\CC$-algebra.  Then, for any integer $n$, the \textit{$R$-module of formal distributions} $R[[z_1^{\pm 1},...,z_n^{\pm 1}]]$ can be defined simply as the set of $\ZZ^n$-tuples of elements of $R$, thought of accordingly as formal power series extending in all directions.  Formal distributions generally do not form a ring; however, given two formal distributions $a(z),b(z) \in R[[z]]$ defined as
 \begin{align*}
   a(z)&=\sum_{n \in \ZZ}a_nz^n\\
@@ -132,7 +136,7 @@ there is a product in \textit{different} variables
 \[a(z)b(w) = \sum_{m,n \in \ZZ}a_mb_nz^mw^n. \]
 Furthermore, the $R$-module structure can be extended to $R[z_1^{\pm 1},...,z_n^{\pm 1}]$ by multiplying and interleaving the finite with the infinite sum.
 
-(mention the formal delta function again?)
+(\tk mention the formal delta function again?)
 
 To ``evaluate'' formal distributions, since getting any actual values in the context of infinite power series is impossible, the correct idea is instead to use the residue as the formal version of the integral around a small circle around $0$: as such, 
 \[\Res_{z=0}a(z)=a_{-1} \]
@@ -251,7 +255,7 @@ If $Y(A,z)$ and $Y(B,w)$ commute for all $A,B \in V$, then all vertex operators 
 Using this multiplication, $V$ is a commutative algebra, with $T$ acting as a derivation, and
 \[Y(A,z)B=(e^{zT}A) \circ B \quad \forall A,B \in V \]
 
-(It's probably worth it to mention the associativity/Cousin property $Y(Y(A,z-w)B,w)"="Y(A,z)Y(B,w)$ here? and $Y(TA,z)$? Both come from the state-field correspondence, which we didn't go over)
+(\tk It's probably worth it to mention the associativity/Cousin property $Y(Y(A,z-w)B,w)"="Y(A,z)Y(B,w)$ here? and $Y(TA,z)$? Both come from the state-field correspondence, which we didn't go over)
 
 \subsection{The Heisenberg vertex algebra}
 
@@ -259,12 +263,12 @@ Using this multiplication, $V$ is a commutative algebra, with $T$ acting as a de
 
 
 Start by considering the algebra of formal Laurent series $\CC((t))$ as a vector space, and then that vector space as a Lie algebra with trivial bracket.  Then, the Heisenberg Lie algebra is defined as the central extension of $C((t))$ with the short exact sequence
-\[1 \rightarrow \CC \cdot \one \rightarrow H \rightarrow \CC((t)) \rightarrow 0 \]
+\[1 \rightarrow \CC \cdot \one \rightarrow \Hh \rightarrow \CC((t)) \rightarrow 0 \]
 such that (after choosing arbitrarily a vector space splitting of $H$)
 \[[f(z),g(z)]=-\Res(f\,dg) \cdot \one. \]
 (Note that the bolded number one, $\one$, is a different character from the usual number one, $1$.)  
 
-Alternatively, if we extended instead the subalgebra $\CC[t^{\pm 1}]$ of $\CC((t))$ consisting of Laurent polynomials, we would get the subalgebra $H' \subsetneq H$.  A basis for $H'$ which serves as a topological basis for $H$ is as follows: define $b_n=t^n$, and then the set $\{b_n\}_{n \in \ZZ} \cup \{\one\}$ form the basis.  The Heisenberg algebra can also be defined using explicit generators and relations:
+Alternatively, if we extended instead the subalgebra $\CC[t^{\pm 1}]$ of $\CC((t))$ consisting of Laurent polynomials, we would get the subalgebra $\Hh' \subsetneq \Hh$.  A basis for $\Hh'$ which serves as a topological basis for $\Hh$ is as follows: define $b_n=t^n$, and then the set $\{b_n\}_{n \in \ZZ} \cup \{\one\}$ form the basis.  The Heisenberg algebra can also be defined using explicit generators and relations:
 \begin{align}
   [b_n,\one]&=0\\
   [b_m,b_n]&=-\Res(t^n\,dt^m)\cdot\one\\
@@ -273,14 +277,14 @@ Alternatively, if we extended instead the subalgebra $\CC[t^{\pm 1}]$ of $\CC((t
 \end{align}
 
 (This is a part that I'm writing a bit differently so as to not have to use a bunch of tildes)
-Note that it is possible to give the Heisenberg algebra a ``triangular decomposition''(is this the right name?) as 
-\[H \simeq_{\CC-Mod} t^{-1}\CC[t^{-1}] \oplus \one \oplus \CC[[t]].  \]
+Note that it is possible to give the Heisenberg algebra a ``triangular decomposition''(\tk is this the right name?) as 
+\[\Hh \simeq_{\CC-Mod} t^{-1}\CC[t^{-1}] \oplus \one \oplus \CC[[t]].  \]
 
 \subsubsection{The Fock space}
 \label{sec:fockspace}
 
 Let $\CC_0$ be the one-dimensional representation of $\CC \cdot\one \oplus \CC[[t]]$ that is acted on by $\CC[[t]]$ trivially and by $\one$ by $1$.  Then, we define the \textit{Heisenberg vertex algebra} or \textit{Fock space} as
-\[\pi:=\Ind_{\CC \cdot \one \oplus \CC[[t]]}^H\CC_0=U(H) \otimes_{U(\CC \cdot \one \oplus \CC[[t]]}\CC_0. \]
+\[\pi:=\Ind_{\CC \cdot \one \oplus \CC[[t]]}^\Hh\CC_0=U(\Hh) \otimes_{U(\CC \cdot \one \oplus \CC[[t]]}\CC_0. \]
 Recall that, given a Lie algebra $\gf$, the universal enveloping algebra $U(\gf)$ is the quotient of the free algebra generated by $\gf$ by the two-sided ideal generated by $gh-hg-[g,h]$ for all $g,h \in \gf$; in particular, for an abelian Lie algebra, it is isomorphic to the polynomial algebra generated by $\gf$.
 
 By the Poincaré-Birkhoff-Witt theorem, there is a canonical basis for $\pi$ as follows: Let $\vac$ be the vector $1 \otimes 1$ killed by $\CC[[t]]$.  Then, the Heisenberg vertex algebra has the following isomorphism: 
@@ -360,7 +364,7 @@ For $m=-1$ (that is, the value at $0$), all values of $n$ other than $n=-k$ will
   &=b_{-k}A.
 \end{align}
 
-My notes say the translation axiom is true by definition, but I think there's a few minor things that need to be checked with normal ordering.
+\tk My notes say the translation axiom is true by definition, but I think there's a few minor things that need to be checked with normal ordering.
 
 For locality, we again use an induction, but a more complicated one.  First, we show that $b(z)$ is local to itself; that all $Y(b_{-k}\vac,z)$ are mutually local will follow from applying derivatives.  The induction step relies on repeated application of a key lemma called Dong's Lemma.
 
@@ -405,7 +409,7 @@ Then, there is a vertex algebra structure on $V$ given by the equation
 \[
   Y(a^{s_1}_{(j_1)}...a^{s_m}_{(j_m)}\vac,z)=\frac{1}{\prod_{r=1}^m(j_r-1)!} \normord{\prod_{r=1}^m \frac{\partial^{-j_r-1}}{\partial z^{j_r-1}}a^{s_r}(z)}.
 \]
-(I should figure out how to make the $:$s bigger)
+(\tk I should figure out how to make the $:$s bigger)
 
 \section{Lattice vertex algebras and affine algebras (Dustan Levenstein, April 20)}
 \label{sec:latticeaffine}
@@ -416,7 +420,7 @@ Let $\gf$ be a finite-dimensional simple Lie algebra over $\CC$.  Define the \te
   L\gf=\gf((t))&=\gf \otimes \CC((t))\\
   [A \otimes f(t),B \otimes g(t)]&=[A,B] \otimes f(t)g(t)
 \end{align*}
-The \textit{affine Lie algebra} or \textit{affine Kac-Moody algebra}(doesn't the latter also have a derivation?) $\ghat$ is defined as a central extension of $L\gf$
+The \textit{affine Lie algebra} or \textit{affine Kac-Moody algebra}(\tk doesn't the latter also have a derivation?) $\ghat$ is defined as a central extension of $L\gf$
 \[0 \rightarrow \CC \cdot K \rightarrow \ghat \rightarrow L\gf \rightarrow 0 \]
 as follows: first, we need an invariant form on $\gf$.  Start with the Killing form
 \[(x,y)_K=Tr_\gf(ad_xad_y) \]
@@ -431,7 +435,7 @@ To define $\ghat$, use the natural vector space splitting of $L\gf$ and deform t
 Much like the Heisenberg vertex algebra, observe the decomposition
 \[\ghat = t^{-1}\gf[t^{-1}] \oplus \CC \cdot K \oplus \gf[[t]] \]
 where $\gf[[t]]$ is defined in analogy to $\gf((t))$.  Let $k \in \CC$; define $\CC_k$ to be the representation of $\gf[[t]] \oplus \CC \cdot K$ on which $\gf[[t]]$ acts by $0$ and $K$ acts by $k$.  Similarly to the construction of the Heisenberg vertex algebra in (\ref{sec:fockspace}), we define the \textit{vacuum representation at level $k$} as follows:
-\[V_k(\gf):=\Ind_{\CC \cdot K \oplus \gf[[t]]}^{\ghat}\CC_k = U(\ghat) \otimes_{U(\CC \cdot K \oplus \gf[[t]]}\CC_k. \]
+\[V_k(\gf):=\Ind_{\CC \cdot K \oplus \gf[[t]]}^{\ghat}\CC_k = U(\ghat) \otimes_{U(\CC \cdot K \oplus \gf[[t]])}\CC_k. \]
 Again, let $\vac$ be the canonical vector $1 \otimes 1$ killed by $\gf[[t]]$; to define a basis for $V_k(\gf)$, we first let $d=\dim \gf$, let $\{J^1,...,J^d\}$ be a basis for $\gf$, define the topological basis
 \[\{J^a_n=J^a \otimes t^n|1 \le a \le d, n \in \ZZ \} \]
 for $\ghat$.  With this, we can use the Poincaré-Birkhoff-Witt theorem to find a basis
@@ -482,7 +486,7 @@ The vertex algebra structure is as follows:
 \end{itemize}
 
 \subsection{Vertex operator algebras}
-A vertex algebra $V$ is called \textit{conformal} or a \textit{vertex operator algebra} of central charge $c$ if we have a vector $\omega \in V_2$ such that the operators $L^V_n$ defined by
+A graded vertex algebra $V$ is called \textit{conformal} or a \textit{vertex operator algebra} of central charge $c$ if we have a vector $\omega \in V_2$ such that the operators $L^V_n$ defined by
 \[Y(\omega,z)=\sum_{n \in \ZZ}L^V_n z^{-n-2} \]
 satisfy the Virasoro relations with central charge $c$; furthermore, $L^V_{-1}=T$, and $L^V_{0}|_{V_n}=n\cdot id$, relating $L_0$ to the grading.
 
@@ -490,7 +494,7 @@ The vector $\omega$ is called a \textit{conformal vector}.
 
 Examples of vertex operator algebras include:
 \begin{itemize}
-\item $Vir_c$ itself, with $\omega=L_{-2}$.
+\item $Vir_c$ itself, with $\omega=L_{-2}$.  In fact, any vertex operator algebra $V$ of central charge $c$ comes equipped with a map $f:Vir_c \rightarrow V$ such that $\omega=f(L_{-2}\vac)$, and vertex algebras equipped with such a map are precisely the vertex operator algebras.
 \item The Heisenberg Fock space $\pi$ has a one-parameter family of conformal vectors: given $\lambda \in \CC$,
 \[\omega_\lambda=\left(\frac{1}{2}b_{-1}^2+\lambda b_{-2}\right)\vac \]
 is a conformal vector with central charge $c=1-12\lambda^2$.
@@ -503,5 +507,119 @@ which is independent of the basis chosen.  Then, $(1/(k+h^\vee))S$ is a conforma
 (At the \textit{critical level} $k=-h^\vee$, the operators $S_{(j)}$ mutually commute instead of forming the Virasoro algebra.)
 \end{itemize}
 
+\subsection{Vertex operator algebras associated to integral lattices}
+
+\subsubsection{Heisenberg representations}
+
+Recall $\Hh$ and $\Hh'$, the Heisenberg algebras, with (topological) basis given by $\one$ and $b_n \quad n \in \ZZ$, with
+\begin{itemize}
+\item $\one$ central
+\item $[b_m,b_n]=m\delta_{m,-n}\one$.
+\end{itemize}
+Define the Heisenberg Weyl algebra as
+\[\widetilde{\Hh}=U(\Hh')/(1-\one); \]
+note that its representations are the representations of $\Hh'$ with $\one$ acting as $1$.
+
+Fix a scalar $\lambda \in \CC$.  Define $\pi_\lambda$ to be the $\widetilde{\Hh}$-module generated by an element $|\lambda\rangle$ with relations
+\begin{align*}
+  b_n|\lambda\rangle&=0 \quad \forall n>0\\
+  b_0|\lambda\rangle&=\lambda|\lambda\rangle;
+\end{align*}
+that is, let $\pi_\lambda$ be an induction of the one-dimensional $U(\CC \cdot \one \oplus \CC[[t]])$-module on which $b_0$ acts as $\lambda$.  Much like for $\pi=\pi_0$, we have a Poincaré-Birkhoff-Witt basis
+\[\pi_\lambda=\CC[b_n]_{n<0}|\lambda\rangle \]
+with the action of $b_i$ related to the Weyl algebra action in much the same way as $\pi_0$'s are.
+
+Note that up to isomorphism, the irreducible graded $\widetilde{\Hh}$-modules with gradation (such that $\deg b_n=-n$) bounded below are precisely the modules $\pi_\lambda$.
+
+In a similar process\footnote{Actually the same process, once representations are defined in (FORWARD REFERENCE)} to the vertex operator of the conformal vector $\omega=\frac{1}{2}b_{-1}^2\vac$ on $\pi$, there exists an action of $Vir$ on $\pi_\lambda$ given by
+\[L_n = \frac{1}{2}\sum_{m \in \ZZ}:b_mb_{n-m}: \quad n \in \ZZ \]
+with central charge $1$; in particular, $\deg(|\lambda\rangle)|\lambda\rangle=L_0|\lambda\rangle=\frac{1}{2}\lambda^2|\lambda\rangle$ is a canonical degree for the generating vector $|\lambda\rangle$.
+
+\subsubsection{One-dimensional lattice vertex operator algebras}
+Fix an even positive integer $N \in 2\ZZ^{>0}$.  Define
+\[V_{\sqrt{N}\ZZ}:=\bigoplus_{m \in \ZZ}\pi_{m\sqrt{N}}. \]
+
+Then $V_{\sqrt{N}\ZZ}$ carries with it a vertex operator algebra structure with $V_0=\pi_0$ as a conformal subalgebra.  We sketch a sketch of a proof of this fact.
+
+A stronger version of the reconstruction theorem says that it is enough to define the fields $Y(|\lambda\rangle,z)=:V_\lambda(z)$ for each $\lambda \in \sqrt{N}\ZZ$.
+
+The calculations for this will involve a pair of numbers $c_{\lambda,\mu} \in \CC$ satisfying the following equations:
+\begin{align}
+  c_{\lambda,0}&=1 \quad \forall \lambda \in \sqrt{N}\ZZ \label{cocycle1} \\
+  c_{\lambda,\mu+\nu}c_{\mu,\nu}&=(-1)^{\lambda\mu}c_{\mu,\lambda+\nu}c_{\lambda,\nu}\quad \forall \lambda,\mu\,nu \in \sqrt{N}\ZZ.\label{cocycle2}
+\end{align}
+Note that the power of $(-1)$ in (\ref{cocycle2}) is in fact always equal to $1$ and so $c_{\lambda,\mu}=1$ is a valid solution; however, for multidimensional lattices, this is not necessarily true.
+
+Denote by $S_\lambda \in \End V_{\sqrt{N}\ZZ}$ the linear map such that
+\begin{align}
+  S_\lambda|\mu\rangle &= c_{\lambda,\mu}|\lambda+\mu\rangle\\
+  [S_\lambda,b_n] &= 0 \quad \forall n \ne 0.
+\end{align}
+Then, we can define $V_\lambda(z)$ as follows:
+\[
+V_\lambda(z)=S_\lambda z^{\lambda b_0}\exp{\left(-\lambda\sum_{n<0}\frac{b_n}{n}z^{-n} \right)} \exp{\left(-\lambda\sum_{n>0}\frac{b_n}{n} z^{-n}\right)}.
+\]
+Note that the sum over $n>0$ consists of terms that, for every element of $V_{\sqrt{N}\ZZ}$, will be eventually zero, and so the exponentiation makes sense; the $z^{\lambda b_0}$ term makes sense, as for any $\mu \in \sqrt{N}\ZZ$, $\mu\lambda \in \ZZ$.  The condition (\ref{cocycle1}) arises from confirming the vacuum axiom, and the condition (\ref{cocycle2}) arisis from confirming the locality axiom.
+\subsubsection{Lattice vertex operator algebra for more general lattices}
+Let $L$ be a lattice of finite rank, equipped with a bilinear form
+\[(-,-):L \times L \rightarrow \ZZ \]
+such that
+\[(\lambda,\lambda)\in 2\ZZ^{>0} \quad \forall \lambda \ne 0. \]
+Set $\hh=L \otimes_\ZZ \CC$; $\hh$ has an inner product induced by the inner product on $L$.
+
+Define the multidimensional Heisenberg Weyl algebra $\widetilde{H}_L$ as the algebra generated by
+\[h_n \quad h\in \hh, n \in \ZZ \]
+with the following relations:
+\begin{itemize}
+\item For fixed $n$, the linear structure of $\hh$ applies to the elements of $h_n$; that is, only a basis for $\hh$ is needed as generators.
+\item \[[h_n,g_m]=n(h,g)\delta_{n,-m}\quad \forall g,h \in \hh; m,n \in \ZZ. \]
+\end{itemize}
+There is always an isomorphism $\widetilde{H}_L \simeq \widetilde{H} \otimes ... \widetilde{H}$, where the number of tensor factors is equal to the rank of $L$.
+
+For each $\lambda \in L$, there is a $\widetilde{H}_L$-module $\pi_\lambda$, generated by $|\lambda\rangle$ with relations
+\begin{itemize}
+\item $h_n|\lambda\rangle=0 \quad n>0$
+\item $h_0|\lambda\rangle=(\lambda,h)|\lambda\rangle,$
+\end{itemize}
+as one might expect the multi-dimensional generalization to be.  Similarly, $\pi_0$ still carries a vertex algebra structure.
+
+Define
+\[V_L=\bigoplus_{\lambda \in L}\pi_\lambda, \]
+with the grading such that $\deg(h_n)=-n$ and $\deg(|\lambda\rangle)=\frac{1}{2}(\lambda,\lambda)$.
+
+To define a vertex operator algebra structure on $V_L$, we will need coefficients $c_{\lambda,\nu} \in \CC$ for $\lambda,\nu \in L$ satisfying:
+\begin{align}
+  c_{\lambda,0}=c_{0,\lambda}&=1 \label{latcocyc1}\\
+  c_{\lambda,\mu}&=(-1)^{(\lambda,\mu)}c_{\mu,\lambda} \label{latcocyc2}\\
+  c_{\mu,\nu}c_{\mu+\nu,\lambda}&=c_{mu,\nu+\lambda}c_{\nu,\lambda}. \label{latcocyc3}
+\end{align}
+Assume that $c_{\lambda,\mu} \ne 0 \forall \lambda,\nu \in L$.  Then, (\ref{latcocyc1}) and (\ref{latcocyc3}) imply that the function $L \times L \rightarrow \CC^\times$ given by the coefficients of $c$ is a $2$-cocycle of $L$ with coefficients in $\CC^\times$.  Scaling $|\lambda\rangle$ by $a_\lambda$ yields the scaling
+\[c_{\lambda,\mu} \mapsto a_\lambda a_\mu a_{\lambda+\mu}^{-1} c_{\lambda,\mu}, \]
+which scales $c$ by a coboundary.
+
+Therefore, solving (\ref{latcocyc1}-\ref{latcocyc3}) is equivalent, up to scaling of the $|\lambda\rangle$s, to finding an element of $H^2(L,\CC^\times)$ satisfying (\ref{latcocyc2}).  As $L$ is an abelian group, we know $H^2(L,A) \simeq \Lambda^2L^* \otimes A$ for any abelian group $A$, and that this isomorphism is determined precisely by the values forced by (\ref{latcocyc2}).  From this, we can show that not only is it possible to find such a set of values, and that they are unique up to scaling, but that with the correct scaling we can set $c_{\lambda,\mu}=\pm 1 \quad \forall \lambda,\mu$.
+
+The conformal vector of $V_L$ is
+\[\omega=\frac{1}{2} \sum_{i=1}^{\dim \hh}(h_i)_{-1}(h^i)_{-1}, \]
+where $\{h_i\}$ and $\{h^i\}$ are dual bases of $\hh$ using $(-,-)$.
+\subsubsection{Relation between Kac-Moody and lattice vertex algebras}
+Let $L$ be a lattice of type $ADE$ and $\gf$ be the corresponding simple Lie algebra.  Let $\ghat$ be the corresponding affine Lie algebra to $\gf$.  Consider the vertex operator algebra $V_L$.
+
+The multidimentional Heisenberg Weyl algebra $\widetilde{H}_L$ acts on $V_L$, and we also have fields corresponding to the lattice elements; for $\lambda \in L$, write
+\[Y(|\lambda\rangle,z)=\sum_{j \in \ZZ}v^{(j)}_\lambda z^{-j-1}. \]
+
+Then, there is a morphism $\sigma: \ghat \rightarrow \End(V_L)$ given by:
+\begin{align}
+  K &mapsto 1\\
+  u \otimes t^n &\mapsto u_n \quad u \in \hh, n \in \ZZ\\
+  E_\alpha \otimes t^n &\mapsto v^{(n)}_\alpha \quad \alpha \in \Delta, n \in \ZZ.
+\end{align}
+The vertex operator algebra $V_L$ will be a quotient of the vertex operator algebra $V_1(\gf)$, and in fact will be the simple quotient $L_1(\gf)$.
+
+Conversely, it is possible to extract a definition for $\gf$ from $V_L$: note that
+\[(V_L)_1 = \hh \vac \oplus \bigoplus_{(\lambda,\lambda)=2}|\lambda\rangle, \]
+and that locality and associativity will imply the Jacobi identity for the bracket
+\[[g,h]=g_{(0)}h \quad g,h \in V_1 \]
+for any vertex operator algebra $V$.
 \end{document}
  
