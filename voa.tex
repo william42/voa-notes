@@ -8,6 +8,7 @@
 \usepackage{tikz-cd}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{qtree}
 \author{William Schlieper}
 \title{Vertex Operator Algebras}
 \newcommand{\RR}{\mathbold{R}}
@@ -22,21 +23,23 @@
 \newcommand{\Kk}{\mathcal{K}}
 \newcommand{\Dd}{\mathcal{D}}
 \newcommand{\Aa}{\mathcal{A}}
+\newcommand{\Ff}{\mathcal{F}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
 \newcommand{\hh}{\mathfrak{h}}
 \newcommand{\ghat}{\widehat{\mathfrak{g}}}
 \newcommand{\normord}[1]{:\mathrel{#1}:}
 \newcommand{\tk}{\textcolor{red}{*}}
+\newcommand{\Sym}{\mathfrak{S}}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Der}{Der}
 \begin{document}
 \maketitle
-This document is a reconstruction based on my notes of the vertex operator algebra seminar
-that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation has been changed (in particular, for the Heisenberg Fock space), some commentary has been added to my handwritten notes, and some definitions and concepts have been moved around, so as to make things more clear for the reader.
+This document is a reconstruction based on my notes of the vertex operator algebra seminar that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation has been changed (in particular, for the Heisenberg Fock space), some commentary has been added to my handwritten notes, and some definitions and concepts have been moved around, so as to make things more clear for the reader.
 
+Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compile this document, such as XeTeX, provided in most \TeX\ distributions.
 \tableofcontents
 
 \section{Introduction (Raphaël Rouquier, March 30)}
@@ -179,8 +182,7 @@ does \textit{not} commute!  However, the difference between the two maps will al
 \subsubsection{Definition (locality)}
 Let $A(z),B(z) \in \End (V)[[z^{\pm 1}]]$ be fields over a vector space $V$.  We say that $A(z)$ and $B(w)$ are local with respect to each other if, for all $v \in V, \varphi \in V*$ there exists
 \[f_{v,\varphi} \in \CC[[z,w]][z^{-1},w^{-1},(z-w)^{-1}] \]
-such that the expressions (\ref{expansion1}) and (\ref{expansion2}) are both expansions of $f_{v,\varphi}$, and that the order of the pole of $(z-w)$ in $f_{v,\varphi}$ is uniformly bounded. (The uniform bound doesn't seem true of $Y(A,z)Y(B,w)=Y(Y(A,z-w)B,w)$ but Ben-Zvi,Frenkel says it's true.  Am I confused?)
-
+such that the expressions (\ref{expansion1}) and (\ref{expansion2}) are both expansions of $f_{v,\varphi}$, and that the order of the pole of $(z-w)$ in $f_{v,\varphi}$ is uniformly bounded.
 Note that locality is not in fact a trivial condition even in the case $A=B$.
 
 \subsubsection{Proposition}
@@ -621,5 +623,61 @@ Conversely, it is possible to extract a definition for $\gf$ from $V_L$: note th
 and that locality and associativity will imply the Jacobi identity for the bracket
 \[[g,h]=g_{(0)}h \quad g,h \in V_1 \]
 for any vertex operator algebra $V$.
+\section{Operadic approach to vertex algebras (Ben West, May 4)}
+
+\subsection{Moduli space of binary trees}
+For the purposes of this talk, we define a \textit{binary tree} as follows:
+\begin{itemize}
+\item A \textit{leaf} is simply a label, with no children.
+\item A \textit{internal node} is a label with two children
+\item A \textit{node} is either a leaf or an external node.
+\item A \textit{tree} is an object consisting of:
+  \begin{itemize}
+  \item A distinguished node called the \textit{root}.
+  \item The set of the root's descendants (recursive completion of its children), which we require to be finite.
+  \item A total ordering on the leaves of the tree.
+  \end{itemize}
+
+\end{itemize}
+An important order on the leaves is an order confusingly called the \textit{preorder on the leaves}(\tk or maybe just the order induced by the preorder?  If there's a better name than preorder, and literally almost anything is better, I'll use that): it is the order such that, if $l$ and $r$ are descendants of the left and right child of any particular node, then $r<l$.
+
+We say that two trees are \textit{equivalent} if there is a bijection on their nodes preserving the tree structure as well as the ordering on the leaves; that is,
+\[\left.\Tree[ 1 2 ] \right. \ne \left.\Tree[ 2 1 ] \right. , \]
+where we denote the ordering on the leaves by labelling them with integers and inducing the standard order on these integers.
+
+We say that a tree has \textit{size $n$} if it has $n$ internal nodes; that is, if it has $n+1$ leaves.  The \textit{moduli space of trees of size $n$}, denoted $B_n$, is simply the set of trees\footnote{To avoid worrying about set theory, pull all labels from your favorite infinite ``label set''.  If you don't have a favorite, just use $\ZZ$.} of size $n$, modulo equivalence.  The set $B_n$ has an action from the symmetric group $\Sym_{n+1}$, permuting the ordering on the leaves.
+
+Denote the moduli space of all binary trees as
+\[B=\bigcup_{n \ge 1}B_n. \]
+
+\subsection{Operations on $B$}
+Let $T_1$ be a tree of size $m$, $T_2$ a tree of size $n$, and $1 \le i \le m+1$.  Then, define the tree $T_1 \cdot_i T_2$ to be the tree you get when you ``weld'' $T_2$ onto the $i$th node (using the order) of $T_1$, ordered as follows: if $T_1$ has ordering $(p_1,...,p_{m+1})$ and $T_2$ ordering $(q_1,...,q_{n+1})$, then $T_1 \cdot_i T_2$ has ordering
+\[(p_1,...,p_{i-1},q_1,...,q_{n+1},p_{i+1},...,p_{m+1}). \]
+For example,
+\[ \left. \Tree[ [ 3 2 ] [ [ 4 5 ]  1 ] ] \right.  \cdot_4  \left. \Tree[ 3 [ 2 1 ] ] \right. = \left. \Tree[ [ 3 2 ] [ [ [ 6 [ 5 4 ] ] 7 ]  1 ] ] \right..
+\]
+
+Let $T$ be a tree of size $n$; note that there is a permutation $\sigma_T \in \Sym_{n+1}$ such that $\sigma_T(T)$ is in the preorder.  Let $p$ be an internal node of $\sigma_T(T)$.  We can cut $\sigma_T(T)$ into two trees:
+\begin{itemize}
+\item $T_p^+$ consists of all nodes that are \textit{not} proper descendants of $p$.
+\item $T_p^-$ consists of $p$ and all nodes that are descendants of $p$.
+\end{itemize}
+Given these two trees, there exists some $i$ such that
+\[\sigma_T(T) = T_p^+ \cdot_i T_p^-. \]
+
+There exists another operation which glues internally.  Let $T$ be a tree, $p$ a node of $T$, and $i,e$ be labels \textit{not} in $T$.  Then, let $T^{(i,e)}_p$ be the tree that makes the replacement (\tk this looks really bad; I'm not sure qtree really matches what I need here)
+\[p \rightsquigarrow \left. \Tree [.i p e ] \right. ; \]
+that is, $p$ still has any same children as it had, but if $p$ was the child of a node, that node's corresponding child is now $i$, and if $p$ was the root, then the root is now $i$.  Furthermore, order the tree such that $e$ is at the end.  For example,
+
+\[\Tree [ [ * * ] [ [.p * * ] * ] ] \rightsquigarrow \Tree [ [ * * ] [ [.i [.p * * ] e ] * ] ] \]
+
+\subsection{Geometric Lie Algebras}
+For the rest of this section, let $F$ be a field of characteristic $0$.
+
+Let $V$ be a finite dimensional vector space over $F$.  Define $\Ff_n:=\Ff_n(V,F)$ to be the space of linear functionals on $V^* \otimes V^{\otimes n-1}$.  Define
+\[\Ff := \bigcup_{n \ge 3} \Ff_n. \]
+Note that $\Sym_{n-1}$ acts on $\Ff_n$ by permuting the $V$ tensors.
+
+
 \end{document}
  
