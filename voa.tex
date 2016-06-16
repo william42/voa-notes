@@ -629,7 +629,7 @@ for any vertex operator algebra $V$.
 For the purposes of this talk, we define a \textit{binary tree} as follows:
 \begin{itemize}
 \item A \textit{leaf} is simply a label, with no children.
-\item A \textit{internal node} is a label with two children
+\item A \textit{internal node} is a label with two children, labeled the \textit{left} and \textit{right} children
 \item A \textit{node} is either a leaf or an external node.
 \item A \textit{tree} is an object consisting of:
   \begin{itemize}
@@ -665,6 +665,9 @@ Let $T$ be a tree of size $n$; note that there is a permutation $\sigma_T \in \S
 Given these two trees, there exists some $i$ such that
 \[\sigma_T(T) = T_p^+ \cdot_i T_p^-. \]
 
+If $p$ is an internal node of $T$, denote by $\widetilde{T}_p$ the tree defined by switching $p$'s left and right children; e.g.
+\[\Tree[ 1 2 ] \rightsquigarrow \Tree[ 2 1 ]. \]
+
 There exists another operation which glues internally.  Let $T$ be a tree, $p$ a node of $T$, and $i,e$ be labels \textit{not} in $T$.  Then, let $T^{(i,e)}_p$ be the tree that makes the replacement (\tk this looks really bad; I'm not sure qtree really matches what I need here)
 \[p \rightsquigarrow \left. \Tree [.i p e ] \right. ; \]
 that is, $p$ still has any same children as it had, but if $p$ was the child of a node, that node's corresponding child is now $i$, and if $p$ was the root, then the root is now $i$.  Furthermore, order the tree such that $e$ is at the end.  For example,
@@ -678,6 +681,105 @@ Let $V$ be a finite dimensional vector space over $F$.  Define $\Ff_n:=\Ff_n(V,F
 \[\Ff := \bigcup_{n \ge 3} \Ff_n. \]
 Note that $\Sym_{n-1}$ acts on $\Ff_n$ by permuting the $V$ tensors.
 
+We define a ``welding product'' for these functionals as follows: Let $I$ be a finite index set, $\{e_i\}_{i \in I}$ a basis for $V$, and $\{e^*_i\}_{i \in I}$ the corresponding dual basis for $V^*$.  For $f \in \Ff_m, g \in \Ff_n, 1 \le k \le m-1$, we define $f *_k g \in \Ff_{m+n-2}$ as
+\[ (f *_k g)(v^* \otimes v_1 \otimes ... \otimes v_{m+n-3}) = \sum_{i \in I}f(v^* \otimes v_1 \otimes ... \otimes v_{k-1} \otimes e_i \otimes v_{n+k+1} \otimes ... \otimes v_{m+n-3}) g(e^*_i \otimes v_k \otimes ... \otimes v_{n+k-2}). \]
+This is independent of the basis chosen.
 
+With this structure, we can define the geometric Lie algebra.  A \textit{geometric Lie algebra} is a finite-dimensional vector space $V$ over $F$ equipped with a map $\nu: B \rightarrow \Ff$ such that $\nu(B_n) \subseteq \Ff_{n+2}$, satisfying four axioms:
+\begin{enumerate}
+\item Chirality: Given $T \in B$, $p$ an internal node of $T$:
+\[\nu(\widetilde{T}_p)=-\nu(T). \]
+\item Conservation: Given $T \in B_n$, denote the root as $r$ and the leaves as $p_1,...,p_{n+1}$.  We have
+\[\nu(T^{(i,e)}_r)=\sum_{j=1}^{n+1}\nu(T^{(i,e)}_{p_j}). \]
+\item Permutation: If $\sigma \in \Sym_{n+1}, T \in B_n$,
+\[\nu(\sigma(T))=\sigma(\nu(T)) \]
+\item Welding: Given $T_1,T_2 \in B$,
+\[\nu(T_1 \cdot_i T_2)=\nu(T_1) *_i \nu(T_2) \]
+\end{enumerate}
+A homomorphism of geometric Lie algebras $\eta: (V_1,\nu_1) \rightarrow (V_2,\nu_2)$ is a map $\nu: V_1 \rightarrow V_2$ of vector spaces such that
+\[\nu_2(T)(w^* \otimes \nu(v_1) \otimes ... \otimes \nu(v_{n+1}))=\nu_1(T)(\nu^*(w^*) \otimes v_1 \otimes ... \otimes v_{n+1}). \]
+
+Given the name, one would expect the categories of geometric Lie algebras and of Lie algebras to be similar.  In fact, the category of geometric Lie algebras is \textit{isomorphic} to the category of finite-dimensional Lie algebras!
+
+To construct this isomorphism, first note that $B_1=\{\Lambda,\widetilde{\Lambda}\}$, where
+\[\Lambda=\Tree[ 2 1 ]; \quad \widetilde{\Lambda}=\Tree[ 1 2 ]. \]
+
+Let $V$ be a Lie algebra with bracket denoted $[,]$.  Then, define $\nu$ on $B_1$ as follows:
+\begin{align}
+  \nu(\Lambda)(v^* \otimes v_1 \otimes v_2)&=\langle v^*,[v_1,v_2] \rangle\\
+  \nu(\widetilde{\Lambda})(v^* \otimes v_1 \otimes v_2)&=\langle v^*,[v_2,v_1] \rangle.
+\end{align}
+The permutation axiom between $\Lambda$ and $\widetilde{\Lambda}$ holds rather automatically.
+
+The antisymmetry of the Lie bracket implies the chirality axiom.  The Jacobi identity implies the conservation axiom for $\Lambda$ and $\widetilde{\Lambda}$.
+
+Define $\nu$ for other trees by recursively applying the welding and permutation axioms; then, the only axiom remaining to check is the general conservation axiom, which can be proven by induction on the size of the tree as follows: Let $T \in B_n$ and denote its root by $r$.  $r$ will have two children, $c_1$ and $c_2$; $c_i$ and its descendants compose the tree $S_i$; note that both $S_1$ and $S_2$ will be smaller.  By the conservation axiom for $\Lambda$, we have
+\[\nu(T^{(i,e)}_r)=\nu(T^{(i,e)}_{c_1})+\nu(T^{(i,e)}_{c_2}), \]
+and applying the axiom to $S_1$ and $S_2$ will complete the proof of the axiom.
+
+Conversely, $\nu(\Lambda):V^* \otimes V \otimes V \rightarrow F$ induces a bracket $[,]: V \otimes V \rightarrow V$ satisfying the necessary axioms.
+\subsection{Geometric vertex operator algebras}
+To work with vertex operator algebra formalisms, we now require a more truly geometric, $2$-dimensional structure than the combinatorial structure used to define a geometric Lie algebra.  The structure we work with is called the moduli space of spheres with tubes.
+
+The sphere, in this context, is simply $S^2=\CP^1$, the complex projective line.  A \textit{sphere with $n$ tubes} consists of the following structure:
+\begin{itemize}
+\item A sphere $\CP^1$,
+\item Distinct oriented points $p_0,...,p_{n-1} \in \CP^1$ called \textit{punctures} such that $p_0$ is negatively oriented and $p_1,...,p_{n-1}$ are positively oriented,
+\item and local analytic coordinates vanishing at each puncture.
+\end{itemize}
+We say that two spheres with tubes are \textit{conformally equivalent} if there exists a complex-analytic diffeomorphism preserving all structure but the local analytic coordinates.  Define the moduli space to be the set of conformal equivalence classes of spheres with $n$ punctures; denote it $K(n-1)$.
+
+Let $P \in K(m)$ with punctures $p_0,...,p_m$; let $Q \in K(n)$ with punctures $q_0,...,q_n$.  We would like to be able to glue $P$ to $Q$ at the $i$th positive puncture; this is not always possible, but when it is, it can be done as follows:
+
+Cut discs of reciprocal radii around $p_0$ and $q_i$ containing no other punctures; this step is not always possible.  Afterwards, glue them together using $z \mapsto 1/z$; when this is possible, the result is unique, and defines a partial function (not an actual function)
+\[\infty_i : K(m) \times K(n) \rightarrow K(m+n-1). \]
+
+Given a graded vector space $V=\bigoplus_{n \in \ZZ}V_n$, define the graded dual and completion as follows:
+\begin{align}
+  V^\vee&=\bigoplus_{n \in \ZZ}V^*_{(n)}\\
+  \overline{V}&=\prod_{n \in \ZZ}V_{(n)}=(V^\vee)^*.
+\end{align}
+(Note that the ``direct sum'' of an infinite number of vector spaces is really a coproduct and especially in this context should be thought of as such)
+Define $\Hh_V(n)=\hom(V^{\otimes n},\overline{V}$.
+
+For $m>0, n \ge 0, 1 \le i \le m$, define the \textit{contraction}
+\begin{align}
+  \Hh_V(m) \times \Hh_V(n) &\rightarrow \hom(V^{\otimes m+n-1},\overline{V}[[t^\pm 1]])\\
+  (f,g) &\mapsto (f *_i g)_t
+\end{align}
+as follows:
+\[(f*_ig)_t(v_1 \otimes ... \otimes v_{n+m-1} = \sum_{k \in \ZZ}t^kf(v_1 \otimes ... \otimes v_{i-1} \otimes P_k(g(v_i \otimes ... \otimes v_{i+n-1})) \otimes v_{i+m} \otimes ... \otimes v_{m+n-1}), \]
+where $P_k$ is the projection operator onto the $k$th factor.
+
+If $\langle v^\vee,(f*_ig)_t(v_1 \otimes ... \otimes V_{m+n-1}\rangle$ is absolutely convergent for $t=1$ and all $v^\vee \in V^\vee$, then define
+\[f*_ig=(f*_ig)_1 \in \Hh_V(m+n-1). \]
+
+A \textit{geometric vertex operator algebra} is a $\ZZ$-graded $\CC$-vector space
+
+\[V = \bigoplus_{n \in \ZZ} V_n \quad \dim V_n < \infty \]
+and a series of maps
+\[\nu_n: K(n) \mapsto \Hh_V(n) \]
+satisfying:
+\begin{enumerate}
+\item Positive energy: $V_n=0$ for $n$ sufficiently small
+\item Grading axiom: If $v^\vee \in V^\vee, v \in V_n, a \in \CC^\times$, then
+  \[\langle v^\vee,\nu_1(0,(a,0))(v)\rangle = a^{-n}\langle v^\vee,v \rangle. \]
+\item Meromorphicity: A function on $K(n)$ of the form
+  \[Q \mapsto \langle v^\vee, \nu_n(Q)(v_1 \otimes ... \otimes v_n) \rangle \quad v^\vee \in V^\vee, v_i \in V \]
+  is called a \textit{correlation function}.  These functions should:
+  \begin{itemize}
+  \item Be meromorphic.
+  \item Have no poles outside of $z_i=z_j$.
+  \item At $z_i=z_j$, the order of the pole should be bounded by a function $N(v_i,v_j)$.
+  \end{itemize}
+\item Permutation axiom: If $\sigma \in \Sym_n, Q \in K(n)$, then
+\[\sigma(\nu_n(Q))=\nu_n(\sigma(Q)). \]
+\item Sewing axiom: If $Q_1 \in K(m), Q_2 \in K(n)$, and the $i$th positive puncture of $Q_1$ can be sewn to the negative puncture of $Q_2$, then $\nu_m(Q_1) *_i \nu_n(Q_2)$ exists and
+\[\nu_{m+n-1}(Q_1 \infty_i Q_2) = \nu_m(Q_1) *_i \nu_n(Q_2) \cdot e^{stuff \cdot c}, \]
+where $c$ is the central charge. (\tk my notes literally say ``stuff'' here.  Huang-Lepowsky paper seems to mention determinant line bundle.)
+\end{enumerate}
+Theorem (5.4.5, 7.2.2 in Huang's 2d conformal geometry): This category is isomorphic to the category of vertex operator algebras.
+
+Note that all the structures in this section were, despite not using the terms, examples of (partial) operads.
 \end{document}
  
