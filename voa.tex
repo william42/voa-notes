@@ -24,6 +24,8 @@
 \newcommand{\Dd}{\mathcal{D}}
 \newcommand{\Aa}{\mathcal{A}}
 \newcommand{\Ff}{\mathcal{F}}
+\newcommand{\Mm}{\mathcal{M}}
+\newcommand{\Nn}{\mathcal{N}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
 \newcommand{\hh}{\mathfrak{h}}
@@ -35,6 +37,7 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\im}{im}
 \begin{document}
 \maketitle
 This document is a reconstruction based on my notes of the vertex operator algebra seminar that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation has been changed (in particular, for the Heisenberg Fock space), some commentary has been added to my handwritten notes, and some definitions and concepts have been moved around, so as to make things more clear for the reader.
@@ -776,10 +779,87 @@ satisfying:
 \[\sigma(\nu_n(Q))=\nu_n(\sigma(Q)). \]
 \item Sewing axiom: If $Q_1 \in K(m), Q_2 \in K(n)$, and the $i$th positive puncture of $Q_1$ can be sewn to the negative puncture of $Q_2$, then $\nu_m(Q_1) *_i \nu_n(Q_2)$ exists and
 \[\nu_{m+n-1}(Q_1 \infty_i Q_2) = \nu_m(Q_1) *_i \nu_n(Q_2) \cdot e^{stuff \cdot c}, \]
-where $c$ is the central charge. (\tk my notes literally say ``stuff'' here.  Huang-Lepowsky paper seems to mention determinant line bundle.)
+where $c$ is the central charge. (\tk my notes literally say ``stuff'' here.  Huang-Lepowsky paper seems to mention determinant line bundle. Checked out Huang's 2d conformal geometry to see what it is.)
 \end{enumerate}
 Theorem (5.4.5, 7.2.2 in Huang's 2d conformal geometry): This category is isomorphic to the category of vertex operator algebras.
 
-Note that all the structures in this section were, despite not using the terms, examples of (partial) operads.
+Note that all the structures in this section were, despite not using the terms, examples of (partial) operads. For more on operads, see (\tk reference).
+\section{Factorization algebras (Pax Kivimae, May 11)}
+A similar idea to that of a vertex algebra is a construction called the factorization algebra, which is a particular sort of algebra defined as a sheaf on an algebraic curve $X$.  In fact, the quasi-conformal vertex algebras are equivalent to universal factorization algebras.  Both can be related to another construction called chiral algebras, which are defined as $\Dd$-modules equipped with a product similar to a Lie bracket.
+
+(\tk \tk this is going to be the section I have the most trouble reproducing well.  It should probably get a once-over by Pax or someone better at factorization algebras.  I should also probably check out the second edition of the book since the first doesn't have a factorization algebras chapter)
+
+\subsection{Operations on sheaves}
+Note that for the remainder of this section, the sheaves we refer to are quasicoherent sheaves.
+
+Fix $X$ a smooth, (usually projective) algebraic curve over $\CC$.  Let $\Mm$ and $\Nn$ be sheaves on $X$, and $\Ff$ a sheaf on $X^2$, and fix $\Omega_X$ the cotangent line bundle.  Then,
+\[\Mm \boxtimes \Nn = \pi_1^* \Mm \otimes_{\Oo_{X^2}} \pi_2^* \Nn \]
+is the ``external tensor product'' of $\Mm$ and $\Nn$, and is a sheaf on $X^2$.
+
+Let $\Delta: X \rightarrow X^2$ be the diagonal map, then the pushforward is the extension by zero
+\[\Delta_*\Mm=\Mm \otimes_{\Oo_X} \Oo_{X^2}. \]
+
+The inclusion of the complement of the diagonal is denoted by $j : X^2 \setminus \Delta \rightarrow X^2$.  The sheaf of functions on $\Ff$ with poles at the diagonal is denoted
+\[\Ff(\infty \Delta) = j_*j^*\Ff = \lim_\rightarrow \Ff(n\Delta). \]
+
+The space of $\Mm$-valued $\delta$ functions relates closely to the exceptional pushforward
+\[\Delta_!(\Mm)=\frac{\Omega_x \boxtimes \Mm (\infty \Delta)}{\Omega_X \boxtimes \Mm} \]
+using the map
+\[\frac{dz \boxtimes f}{(z-w)^n} \mapsto \frac{1}{(n-1)!} \partial^{n-1}_z \delta(z-w) \boxtimes f. \]
+
+There is a surjective map
+\[\Res: \Delta_!\Mm \rightarrow \Delta_*\Mm \]
+that provides an isomorphism $\Delta_*\Mm=\Delta_!\Mm/\im(d \otimes 1)$.  It is also useful to have a non-$\Omega$-based version of the exceptional pushforward
+\[\Delta_+=\frac{\Oo_X \otimes \Mm(\infty \Delta)}{\Oo_X \otimes \Mm}. \]
+Since $X$ is one-dimensional (in a complex sense), the cotangent bundle $\Omega_X = \omega_X$ is also the canonical bundle, and there is an isomorphism between left and right $\Dd$-modules as follows:
+\[\Ff \mapsto \Ff \otimes \Omega_X. \]
+Finally, note that the transposition map $T: X^2 \rightarrow X^2; (x,y) \mapsto (y,x)$ will anticommute with the residue map; that is,
+\[T \circ \Res \circ T = - \Res. \]
+\subsection{Cousin complex}
+The complexes the Cousin complex is based on involve a series of sheaves on a filtration that is almost, but not actually, satisfying
+\[Z \supseteq Z_0 \supset ... Z_n \textrm{ \textcolor{red}{does not happen}.} \]
+
+What the series of $Z_i$ actually does satisfy is the relation
+\[\overline{Z_i} \supseteq \overline{Z_{i+1}}, \]
+and an exact sequence
+\[0 \rightarrow \Ff \rightarrow \Ff_0 \rightarrow \Ff_1 ... \rightarrow \Ff_n \rightarrow 0. \]
+of sheaves on $Z$ such that
+\[supp(\Ff_{i+1}) \subseteq \overline{Z_i}. \]
+
+The first case is $Z=X^2$, with the filtration $X^2 \supset \Delta$ and $\Ff=\omega_X^{\boxtimes 2}$:
+\[0 \rightarrow \omega_X \boxtimes \omega_X \rightarrow \omega_X \boxtimes \omega_X (\infty \Delta) \rightarrow \Delta_!(\omega_x) \rightarrow 0. \]
+
+Next, we let $Z=X^3$, define the different diagonals as $\Delta_{ij}=\{(x_k) \in Z|x_i=x_j\}$ and so forth, and start with $\Ff=\omega_X^{\boxtimes 3}$:
+\[0 \rightarrow \omega_X^{\boxtimes 3} \rightarrow \omega_X^{\boxtimes 3}\left(\infty \bigcup \Delta_{ij} \right) \rightarrow \bigoplus_{ij} \Delta_{ij!}(\omega^{\boxtimes 2}(\infty \Delta_{ij})) \rightarrow \Delta_{123!}\omega_X \rightarrow 0. \]
+Define the map
+\[\mu_{(12)3}: \omega_X^{\boxtimes 3}\left(\infty \bigcup \Delta_{ij}\right) \rightarrow \Delta_{123!}\omega_X \]
+as the composition of the two maps factoring through $\Delta_{12!}\omega^{\boxtimes 2}(\infty \Delta_{12})$, and similarly the other combinations.  Up to signs (though the $\Sym_3$ symetry matches that of the regular Jacobi), we have
+\[\mu_{(12)3}+\mu_{(23)1}+\mu_{(31)2}=0, \]
+which is a Jacobi identity, much like for Lie algebras.
+\subsubsection{Crystals, $\Dd$-modules, and the symmetry of $\Delta_!$}
+Recall Taylor's identity,
+\[f(z)=\sum_{k=0}^\infty \frac{(z-w)^k}{k!} (\partial_w^kf)(w)=e^{(z-w)\partial_w}f(w). \]
+Now, conisder the transposition of $\Delta_!\Mm$:
+\[T_*\Delta_!\Mm=\frac{\Mm \boxtimes \Omega(\infty \Delta)}{\Mm \boxtimes \Omega}. \]
+This is not equal to $\Delta_!\Mm$ in general(\tk is this true?), but in the case where $\Mm$ is a $\Dd$-module, it can be related: Let $\widehat{\Delta}$ be the formal completion of $X^2$ around $\Delta$.  Then, if $\Mm$ is a $\Dd$-module, there is an isomorphism
+\begin{align}
+  \widehat{\Delta}^*(\Oo \boxtimes \Mm) &\rightarrow \widehat{\Delta}^*(\Mm \boxtimes \Oo)\\
+  1 \otimes \psi(z)(z-w)^k &\mapsto e^{(z-w)\partial_w}(\psi(w) \otimes 1)(z-w)^k.
+\end{align}
+In fact, a map between those two sheaves restricting to the identity on $\Delta$ is equivalent to a $\Dd$-module structure on $\Mm$.  This map can be extended to $\Delta_+$:
+\begin{align}
+  \frac{\Oo \boxtimes \Mm (\infty \Delta)}{\Oo \boxtimes \Mm} &\rightarrow \frac{\Mm \boxtimes \Oo (\infty \Delta)}{\Mm \boxtimes \Oo}\\
+  (1 \boxtimes \psi)(z-w)^{-k} \mapsto e^{(z-w)\partial_w}(\psi \boxtimes 1)(z-w)^{-k}=\sum_{n=0}^{k+1}\left(\frac{\partial_w^n}{n!}(\psi \boxtimes 1)(z-w)^{-k}\right)(z-w)^n.
+\end{align}
+
+A similar construction can be made to identify $\Delta_!\Mm \rightarrow T_*\Delta_!\Mm$.
+\subsection{Chiral algebras}
+A \textit{chiral algebra} consists of the following data:
+\begin{itemize}
+\item $\Aa$, a $\Dd$-module on $X$.
+\item $\mu: \Aa \boxtimes \Aa (\infty \Delta) \rightarrow \Delta_! \Aa$
+\item An ``identity map'' $\Omega_X \rightarrow \Aa$.
+\end{itemize}
+satisfying the following axioms:
 \end{document}
  
