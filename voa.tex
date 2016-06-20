@@ -26,6 +26,8 @@
 \newcommand{\Ff}{\mathcal{F}}
 \newcommand{\Mm}{\mathcal{M}}
 \newcommand{\Nn}{\mathcal{N}}
+\newcommand{\Vv}{\mathcal{V}}
+\newcommand{\Yy}{\mathcal{Y}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
 \newcommand{\hh}{\mathfrak{h}}
@@ -36,6 +38,7 @@
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\im}{im}
 \begin{document}
@@ -841,7 +844,7 @@ Recall Taylor's identity,
 \[f(z)=\sum_{k=0}^\infty \frac{(z-w)^k}{k!} (\partial_w^kf)(w)=e^{(z-w)\partial_w}f(w). \]
 Now, conisder the transposition of $\Delta_!\Mm$:
 \[T_*\Delta_!\Mm=\frac{\Mm \boxtimes \Omega(\infty \Delta)}{\Mm \boxtimes \Omega}. \]
-This is not equal to $\Delta_!\Mm$ in general(\tk is this true?), but in the case where $\Mm$ is a $\Dd$-module, it can be related: Let $\widehat{\Delta}$ be the formal completion of $X^2$ around $\Delta$.  Then, if $\Mm$ is a $\Dd$-module, there is an isomorphism
+This is not the same sheaf as $\Delta_!\Mm$, but in the case where $\Mm$ is a $\Dd$-module, it can be related: Let $\widehat{\Delta}$ be the formal completion of $X^2$ around $\Delta$.  Then, if $\Mm$ is a $\Dd$-module, there is an isomorphism
 \begin{align}
   \widehat{\Delta}^*(\Oo \boxtimes \Mm) &\rightarrow \widehat{\Delta}^*(\Mm \boxtimes \Oo)\\
   1 \otimes \psi(z)(z-w)^k &\mapsto e^{(z-w)\partial_w}(\psi(w) \otimes 1)(z-w)^k.
@@ -852,14 +855,132 @@ In fact, a map between those two sheaves restricting to the identity on $\Delta$
   (1 \boxtimes \psi)(z-w)^{-k} \mapsto e^{(z-w)\partial_w}(\psi \boxtimes 1)(z-w)^{-k}=\sum_{n=0}^{k+1}\left(\frac{\partial_w^n}{n!}(\psi \boxtimes 1)(z-w)^{-k}\right)(z-w)^n.
 \end{align}
 
-A similar construction can be made to identify $\Delta_!\Mm \rightarrow T_*\Delta_!\Mm$.
+A similar construction can be made to identify $\Delta_!\Mm \rightarrow T_*\Delta_!\Mm$, using the isomorphism between left and right $\Dd$-modules.
 \subsection{Chiral algebras}
+\label{sec:chiraldef}
 A \textit{chiral algebra} consists of the following data:
 \begin{itemize}
 \item $\Aa$, a $\Dd$-module on $X$.
 \item $\mu: \Aa \boxtimes \Aa (\infty \Delta) \rightarrow \Delta_! \Aa$
-\item An ``identity map'' $\Omega_X \rightarrow \Aa$.
+\item An ``identity map'' $\varepsilon: \Omega_X \rightarrow \Aa$.
 \end{itemize}
 satisfying the following axioms:
+\begin{itemize}
+\item $\mu$-antisymmetry: $T \circ \mu \circ T=-\mu$
+\item Jacobi relation: $\mu_{(12)3}+\mu_{(23)1}+\mu_{(31)2}=0$.
+\item Identity property:
+\[
+  \begin{tikzcd}
+    \Omega \boxtimes \Aa (\infty \Delta) \arrow[r,"\varepsilon \otimes 1"] \arrow[d,"\textrm{defining quotient}"] & \Aa \boxtimes \Aa (\infty \Delta) \arrow[d,"\mu"]\\
+    \Delta_!(\Aa) \arrow[r,"id"] & \Delta_!(\Aa)
+  \end{tikzcd}
+\]
+commutes.
+\end{itemize}
+A \textit{universal chiral algebra} is an assignment $X \mapsto \Aa_X$ for every smooth projective algebraic curve over $\CC$ such that for every étale map $f: X' \rightarrow X$ we have $f^*(\Aa_X) \simeq \Aa_{X'}$.
+
+We would like to be able to relate quasiconformal vertex algebras (a superset of conformal vertex algebras) to universal chiral algebras, via conformal blocks (which will be explained more in (\tk FORWARD REFERENCE); note that Ben-Zvi and Frenkel(see \tk reference) actually introduce conformal blocks first).  To do this, we use the Virasoro action of a conformal vertex algebra to produce a vector bundle.
+
+Given any algebraic curve $X$ and any (geometric) point $x \in X$, the completed local ring $\widehat{\Oo_{X,x}}$ is isomorphic to the abstract ring $\CC[[z]]$.  The space
+\[\Aut_X=\{(x,f_x)|x \in X, f_x: \CC[[z]] \overset{\sim}{\rightarrow} \widehat{\Oo_{X,x}} \} \]
+has a canonical map $\Aut_X \rightarrow X$ making a bundle with fiber
+\[Aut_x := \Aut_{X,x} = \{f_x: \CC[[z]] \overset{\sim}{\rightarrow} \widehat{\Oo_{X,x}} \} \]
+and a canonical action of the group $\Aut(\CC[[z]])$.
+
+A vertex operator algebra $V$ has an action of $\Der(\CC[[z]])$ induced by its action of $Vir$.  To exponentiate this to an action of $\Aut(\CC[[z]])$, we use the fact that an element of $\Aut(\CC[[z]])$ is defined as
+\[z \mapsto f(z) \quad f(z)\in cz+z^2\CC[[z]] \quad c \in \CC^\times. \]
+
+Such a function $f(z)$ can be re-expressed as
+\[f(z)=\exp{ \left(\sum_{i>0}v_iz^{i+1}\partial_z \right)} c^{z\partial_z}z, \]
+which lets us act on $v \in V$ as
+\[\rho(f) \cdot v=\exp{ \left(-\sum_{i>0}v_iL_i \right)}c^{-L_0}z, \]
+the first term being coherent as the action of $L_i$ is locally nilpotent for $i>0$ and the second term being coherent as the action of $L_0$ is always an integer.  Given this action, we define the vector bundle on $X$
+\[\Vv_X=\Aut_X \times_{\Aut \CC[[z]]} V. \]
+Note that $\Vv_X$ is a coordinate-independent definition of the vertex algebra; furthermore, there is a natural $\Dd$-module structure induced by the connection $\nabla = \partial_z + L_{-1}$.  Finally, we can define a map of $\Dd$-modules
+\begin{align}
+  \mu: \Vv_X \boxtimes \Vv_X (\infty \Delta) &\rightarrow \Delta_+(\Vv_X)\\
+  A(z) \otimes B(w) &\mapsto Y(A,z-w)\cdot B.
+\end{align}
+That this is in fact a $\Dd$-module map follows from the translation axiom.  That $\mu$ is symmetric follows from
+\[Y(A,z-w)B=e^{(z-w)T}Y(B,w-z)A. \]
+Iterating the map $\mu$ to get a map corresponding to the earlier $\mu_{(12)3}$ and two similar others; a Jacobi identity can be found from this as well.  Finally, we switch from a left to a right $\Dd$-module with
+\[\Aa = \Vv \otimes \omega_X \quad \mu' = \mu \otimes \mu_\omega, \]
+which, with the induced map from $\CC \otimes \vac \rightarrow V$ producing the desired map $\varepsilon$.
+\subsection{Factorization Algebras}
+
+\subsubsection{Ran spaces}
+The Ran space can be defined as
+\[Ran(X) = \{s \in P(X) | \ |s|<\infty \}, \]
+the space of finite subsets of $X$.  The topology of $Ran(X)$ can be defined such that for any set $I$ such that $|I|<\infty$, the map
+\[i_I: X^I \rightarrow Ran(X) \]
+is continuous, where $X^I$ denotes maps $I \rightarrow X$.
+
+Given a surjective map $f: J \rightarrow I$, we can define a diagonal and its complement
+\[\Delta_{J/I}: X^J \rightarrow X^I \quad j_{J/I}: X^J \setminus \Delta_{J/I} \rightarrow X^J \]
+based on the pullback of $f$.
+
+(\tk in my notes, some sheaf identities without context and I think with errors.  Will definitely need to check this further in the second edition of Ben-Zvi and Frenkel.)
+
+However, $Ran(X)$ does not have the correct properties for algebraic sheaves to be defined on it; instead, we say a ``sheaf on $Ran(X)$'' to mean a \textit{collection} of sheaves $\Ff_I$ on $X^I$ with $\Delta_{J/I}^*\Ff_J=\Ff_I$, which satisfies similar properties.
+
+\subsubsection{Definition}
+A \textit{factorization algebra} is a sheaf $\Ff$ on $Ran(X)$ and a section $1 \in \Ff_1(X)$ as follows:
+
+(and now I'm seeng a $\phi$ I don't even see a definition for.  Yeah, I'm tabling this until I get a hold of the second edition of the book.)
+\section{Conformal blocks (W. Schlieper, May 18)}
+Recall from section (\ref{sec:chiraldef}) the definition of the vector bundle $\Vv_X$ for a vertex operator algebra $V$.  In addition, it's possible to define $\Yy_X$ an $\End{\Vv_x}$-valued section on $\Vv^*$; that is, for $a \in \Vv_x, \varphi \in \Vv^*_x$, and $s$ a section of $\Vv_x$ on $\Dd_x$ (i.e. $s \in V \otimes \widehat{\Oo_{X,x}}$), we have, given $s=Bf(z)$ under an isomorphism $\Oo_{X,x}\rightarrow \CC[[z]]$,
+\[\langle \varphi,\Yy_x(s)a \rangle \mapsto \langle \varphi,Y(B,z)a \rangle f(z) \]
+under that same isomorphism.
+
+Equivalently, there is a dual 
+\[\Gamma(D_x,\Omega \otimes \Vv_x) \rightarrow \End(\Vv_x) \]
+defined by, after using the isomorphism,
+\begin{align}
+  A f(z) dz &\mapsto \Res_x(\langle -,Y(A,z)dz - \rangle f(z))\\
+  Az^n dz &\mapsto A_{(n)}.
+\end{align}
+Note that the sheaf $\Omega \otimes \Vv_X$ is in fact the chiral algebra corresponding to $\Vv$.
+
+As well, recall the connection
+\[\Vv_X \overset{\Delta}{\rightarrow} \Omega \otimes \Vv_X \]
+defined as
+\[\Delta = d+L_{-1}=d+T; \]
+similarly, $\Vv^*_X$ has the connection $d-L^*_{-1}$, under which $\Yy_X$ will be horizontal.
+
+\subsection{Definition of conformal blocks}
+Let $X$ be a projective algebraic curve over $\CC$, and fix a point $x \in X$.
+
+The map $D_x \rightarrow X$ induces the map $D^\times_x \rightarrow X \setminus x$ and the corresponding map of curves
+\[\Oo_{X \setminus x} \rightarrow \Kk_x = \textrm{Frac}(\widehat{\Oo_{X,x}}). \]
+
+As $\ghat$ is a central extension of $\gf((z))$, the isomorphism $\Kk_x \simeq \CC((z))$ defines a Lie algebra $\ghat_x \simeq \gf \otimes \Kk_x \oplus \CC \cdot K$.  Furthermore, the Residue Theorem saying that
+\[\Res_x\alpha=0 \quad \forall \alpha \in \Omega_{X \setminus x} \]
+implies that
+\[\gf \otimes \Oo_{X \setminus x} \rightarrow \gf \otimes \Kk_x \]
+can be extended into a map
+\[\gf[X \setminus x]:=\gf \otimes \Oo_{X \setminus x} \rightarrow \gf_x \]
+of Lie algebras.  Given this map, we can define, for the Kac-Moody vertex algebra, the \textit{vector space of coinvariants} as follows:
+\[\widetilde{H}(V_k(\gf),X,x)=V_k(\gf) / (\gf[X \setminus x] \cdot V_k(\gf)). \]
+Its dual, called the \textit{vector space of conformal blocks}, is as follows:
+\[\widetilde{C}(V_k(\gf),X,x)=\hom_{\gf[X \setminus x]}(V_k(\gf),\CC). \]
+
+This is a perfectly workable definition in the Kac-Moody case and can be generalized to other modules over the algebra; however, this cannot easily be generalized to arbitrary Lie algebras, and in fact even in the Virasoro vertex algebra case there are problems with trying to describe the conformal blocks by a quotient by $Vec(X/x)$.
+
+Instead, it is easier to use all the vertex operators at once.  First, note that the map
+\[\Yy_x^*: \Gamma(D_x^\times,\Vv \otimes \Omega) \rightarrow \End \Vv_x \]
+will be zero for any element in the image of the map
+\[\Vv \overset{\Delta}{\rightarrow} \Vv \otimes \Omega \]
+by the translation axiom; as such, defining $h(\Vv \otimes \Omega)$ as the quotient by the action of $\Delta$, there will exist a Lie algebra homomorphism
+\[\Gamma(D_x^\times,h(\Vv \otimes \Omega)) \rightarrow \End(\Vv_x), \]
+with an injective Lie algebra homomorphism
+\[\Gamma(Z,h(\Vv \otimes \Omega)) \rightarrow \Gamma(Y,h(\Vv \otimes \Omega)) \]
+corresponding to any map $Y \rightarrow Z$.  Note that the fact that $h(\Vv \otimes \Omega)$ is a Lie algebra can be related directly to the aforementioned chiral algebra structure.
+
+Now, for \textit{any} vertex operator algebra, we can define the coinvariants and conformal blocks as follows:
+\begin{align}
+  H(V,X,x)&=\Vv / \Gamma(\Sigma,h(\Vv \otimes \Omega))\\
+  C(V,X,x)&=\hom_{\Gamma(\Sigma,h(\Vv \otimes \Omega))}(\Vv,\CC).
+\end{align}
+
 \end{document}
  
