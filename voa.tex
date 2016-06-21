@@ -27,6 +27,7 @@
 \newcommand{\Mm}{\mathcal{M}}
 \newcommand{\Nn}{\mathcal{N}}
 \newcommand{\Vv}{\mathcal{V}}
+\newcommand{\Ww}{\mathcal{W}}
 \newcommand{\Yy}{\mathcal{Y}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
@@ -781,8 +782,10 @@ satisfying:
 \item Permutation axiom: If $\sigma \in \Sym_n, Q \in K(n)$, then
 \[\sigma(\nu_n(Q))=\nu_n(\sigma(Q)). \]
 \item Sewing axiom: If $Q_1 \in K(m), Q_2 \in K(n)$, and the $i$th positive puncture of $Q_1$ can be sewn to the negative puncture of $Q_2$, then $\nu_m(Q_1) *_i \nu_n(Q_2)$ exists and
-\[\nu_{m+n-1}(Q_1 \infty_i Q_2) = \nu_m(Q_1) *_i \nu_n(Q_2) \cdot e^{stuff \cdot c}, \]
-where $c$ is the central charge. (\tk my notes literally say ``stuff'' here.  Huang-Lepowsky paper seems to mention determinant line bundle. Checked out Huang's 2d conformal geometry to see what it is.)
+\[\nu_{m+n-1}(Q_1 \infty_i Q_2) = \nu_m(Q_1) *_i \nu_n(Q_2) \cdot e^{-\Gamma(Q_1^{(i)},Q_2^{(0)},q_1^{(i)}) \cdot c}, \]
+where $c$ is the central charge and
+\[\Gamma(A,B,\alpha_0) \equiv \sum_{j=0}^\infty\frac{j^3-j}{12}\alpha_0^{-j}A_jB_j \pmod{A^2B+B^2A} \]
+is a power series in two local coordinates specifically chosen such that the Virasoro vertex algebra with central charge $c$ becomes a vertex algebra. (\tk I think this is what Huang is saying; in my notes and I think in the talk it was simply written as ``stuff'') 
 \end{enumerate}
 Theorem (5.4.5, 7.2.2 in Huang's 2d conformal geometry): This category is isomorphic to the category of vertex operator algebras.
 
@@ -978,9 +981,69 @@ corresponding to any map $Y \rightarrow Z$.  Note that the fact that $h(\Vv \oti
 
 Now, for \textit{any} vertex operator algebra, we can define the coinvariants and conformal blocks as follows:
 \begin{align}
-  H(V,X,x)&=\Vv / \Gamma(\Sigma,h(\Vv \otimes \Omega))\\
-  C(V,X,x)&=\hom_{\Gamma(\Sigma,h(\Vv \otimes \Omega))}(\Vv,\CC).
+  H(V,X,x)&=\Vv_x / \Gamma(\Sigma,h(\Vv \otimes \Omega))\\
+  C(V,X,x)&=\hom_{\Gamma(\Sigma,h(\Vv \otimes \Omega))}(\Vv_x,\CC).
 \end{align}
+where $\Sigma=X \setminus x$.
 
+Recall that for all $A \in \Vv_x \simeq V, \varphi \in \hom_\CC(\Vv_x,\CC) = \Vv_x^*$, the product
+\[\langle \varphi,\Yy_x \cdot A \rangle \]
+will be a section of $\Vv^*$ on $D_x^\times$.  By the Strong Residue Theorem(\tk a ref for this was hard to find when I was preparing my talk, so I should find one now), the condition of being $\Gamma(\Sigma,h(\Vv \otimes \Omega))$-invariant is equivalent to the aforementioned section having an extension from $D_x^\times$ to $X \setminus x$.  In particular, this is a dual definition of the conformal blocks.
+
+\subsection{Modules of vertex algebras}
+Let $V$ be a graded vertex algebra over $\CC$.  A complex vector space $M$ is a \textit{$V$-module} if it has:
+\begin{itemize}
+\item A gradation $M=\bigoplus_{n \in \ZZ}M_n$,
+\item A map $Y_M: V \rightarrow \End{M[[z^{\pm 1}]]}$
+\end{itemize}
+satisfying the following properties:
+\begin{itemize}
+\item Given $A \in V_n$, $Y_M(A,z)$ has conformal dimension $n$.
+\item $Y_M(\vac,z)=id_M$
+\item For all $A,B \in V, m \in M$, there exists an element of $M[[z,w]][z^{-1},w^{-1},(z-w)^{-1}$ that expands to:
+  \begin{itemize}
+  \item $Y_M(A,z)Y_M(B,w)m \in M((z))((w))$
+  \item $Y_M(B,w)Y_M(A,z)m \in M((w))((z))$
+  \item $Y_M(Y(A,z-w)B,w)m \in M((w))((z-w))$.
+  \end{itemize}
+
+\end{itemize}
+Note that the first edition of (\tk reference) defines a module in a different, but equivalent, way.
+
+When $V$ is a vertex operator algebra, a $V$-module $M$ is called \textit{conformal} if the action of $L_0=\omega_{(1)}$ differs from that implied by the grading by a constant.  Given a vertex operator algebra $V$ and conformal $V$-module $M$, the Virasoro action on $V$ is inherited by $M$, and so we can create a $\Dd$-module (vector bundle with connection) $\Mm$ with a similar action of $h(\Vv \otimes \Omega)$ and a similar endomorphism-valued section $\Yy_M$.  However, if the gradation is no longer integral, then the space must be extended by the set of nonzero tangent vectors at a point, as $L_0$ acting nonintegrally means that the full group $\Aut \CC[[z]]$ no longer acts.
+
+\subsection{General conformal blocks}
+Let $V$ be a vertex operator algebra, and $X$ a projective algebraic curve over $\CC$.
+
+Let $M_1,...,M_n$ be $V$-modules, and $x_1,...,x_n \in X$ distinct points on $X$.  Identify each $M_i$ with the vector bundle $\Mm_i$ on the disc $D_{x_i}$, and consider functionals $\varphi$ on $\bigotimes_{i=1}^n M_i$ such that the sections
+\[\langle \varphi, A_1 \otimes ... \otimes (\Yy_{M_i,x_i} \cdot A_i) \otimes ... \otimes A_n \rangle \]
+on $D_{x_i}^\times$ all extend to the \textit{same} section of $\Vv^*$ over $\Sigma:=X \setminus \{x_1,...,x_n\}$.  Such a functional is called a conformal block; the vector space of conformal blocks over the collection of modules $(M_i)$ on the points $(x_i)$ is denoted
+\[C_V(X,(x_i),(M_i)). \]
+Dually, we can define the conformal blocks as the $\Gamma(\Sigma,h(\Vv \otimes \Omega))$-invariants of functionals on the tensor product of the $M_i$s, and a space of coinvariants as the coinvariants of that tensor product.
+
+Note, however, that the set of points is sufficient to determine the conformal blocks only when $L_0$ acts integrally on each module; otherwise, one also requires an element of the tangent space at each point.  However, in genus $0$ where the bulk of explicit calculations will be done, we have a canonical tangent vector, after fixing points $0$, $1$, and $\infty$.
+
+\subsection{Functoriality of conformal blocks}
+There are two ways in which the category theory of modules is relevant to conformal blocks.  The first part of functoriality is simply that 
+\[C_V(X,(x_i),-): ((V-Mod)^n)^{op} \rightarrow \CC-Mod \]
+is in fact a functor in each of its elements.  In fact, given a set of morphisms $M_i \rightarrow N_i$, the map
+\[C_V(X,(x_i),(N_i)) \rightarrow C_V(X,(x_i),(M_i)) \]
+can be found by simply using $\hom_\gf(-,\CC)$ as a functor, where $\gf$ is the Lie algebra built from $h(\Vv \otimes \Omega)$.
+
+The other morphisms relevant to functoriality for conformal blocks involves morphisms of vertex operator algebras.  Let $V \rightarrow W$ be a conformal morphism of vertex operator algebras; then, there exist natural bundle maps $\Vv \rightarrow \Ww$ and $\Ww^* \rightarrow \Vv$.  Given a conformal $W$-module $M$, it is possible to give $M$ a conformal $V$-module structure by passing $\Yy^W_{M,x}$ through the map $\Ww^* \rightarrow \Vv^*$, giving $\Yy^V_{M,x}$.
+
+So, if $\varphi: \hom_\CC(\bigotimes M_i,\CC)$ is a conformal block on $W$ given $X,x_1,...,x_n$, then the sections
+\[\langle \varphi,A_1 \otimes ... \otimes(\Yy^W_{M_i,x_i}\cdot A_i) \otimes ... \otimes A_n \rangle \]
+extend to $X \setminus \{x_i\}$, can be projected to $\Vv$ and restricted to $D_{x_i}$, yielding
+\[\langle \varphi,A_1 \otimes ... \otimes(\Yy^V_{M_i,x_i}\cdot A_i) \otimes ... \otimes A_n \rangle, \]
+thus satisfying the requirements for a conformal block on $V$.  Therefore, there is an \textit{embedding}
+\[C_W(X,(x_i),(M_i)) \rightarrow C_V(X,(x_i),(M_i)). \]
+
+In particular, for any vertex operator algebra $V$ with central charge $c$, there exists a conformal vertex algebra morphism
+\[Vir_c \rightarrow V \]
+and a corresponding embedding
+\[C_V(X,(x_i),(M_i)) \rightarrow C_{Vir_c}(X,(x_i),(M_i)). \]
+Note that even in the case $V_k(\gf)$, this is nontrivial, as the Sugawara operator is non-linear with respect to the affine Lie algebra.
+\subsection{Chiral correlation functions}
 \end{document}
  
