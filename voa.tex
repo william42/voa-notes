@@ -16,7 +16,9 @@
 \newcommand{\ZZ}{\mathbold{Z}}
 \newcommand{\FF}{\mathbold{F}}
 \newcommand{\QQ}{\mathbold{Q}}
+\newcommand{\PP}{\mathbold{P}}
 \newcommand{\CP}{\mathbold{CP}}
+\newcommand{\MM}{\mathbold{M}}
 \newcommand{\vac}{|0\rangle}
 \newcommand{\Hh}{\mathcal{H}}
 \newcommand{\Oo}{\mathcal{O}}
@@ -29,6 +31,7 @@
 \newcommand{\Vv}{\mathcal{V}}
 \newcommand{\Ww}{\mathcal{W}}
 \newcommand{\Yy}{\mathcal{Y}}
+\newcommand{\Bb}{\mathcal{B}}
 \newcommand{\one}{\mathbold{1}}
 \newcommand{\gf}{\mathfrak{g}}
 \newcommand{\hh}{\mathfrak{h}}
@@ -36,6 +39,7 @@
 \newcommand{\normord}[1]{:\mathrel{#1}:}
 \newcommand{\tk}{\textcolor{red}{*}}
 \newcommand{\Sym}{\mathfrak{S}}
+\newcommand{\xv}{\mathbold{x}}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ind}{Ind}
@@ -726,6 +730,7 @@ and applying the axiom to $S_1$ and $S_2$ will complete the proof of the axiom.
 
 Conversely, $\nu(\Lambda):V^* \otimes V \otimes V \rightarrow F$ induces a bracket $[,]: V \otimes V \rightarrow V$ satisfying the necessary axioms.
 \subsection{Geometric vertex operator algebras}
+\label{sec:geomvoa}
 To work with vertex operator algebra formalisms, we now require a more truly geometric, $2$-dimensional structure than the combinatorial structure used to define a geometric Lie algebra.  The structure we work with is called the moduli space of spheres with tubes.
 
 The sphere, in this context, is simply $S^2=\CP^1$, the complex projective line.  A \textit{sphere with $n$ tubes} consists of the following structure:
@@ -758,7 +763,7 @@ as follows:
 \[(f*_ig)_t(v_1 \otimes ... \otimes v_{n+m-1} = \sum_{k \in \ZZ}t^kf(v_1 \otimes ... \otimes v_{i-1} \otimes P_k(g(v_i \otimes ... \otimes v_{i+n-1})) \otimes v_{i+m} \otimes ... \otimes v_{m+n-1}), \]
 where $P_k$ is the projection operator onto the $k$th factor.
 
-If $\langle v^\vee,(f*_ig)_t(v_1 \otimes ... \otimes V_{m+n-1}\rangle$ is absolutely convergent for $t=1$ and all $v^\vee \in V^\vee$, then define
+If $\langle v^\vee,(f*_ig)_t(v_1 \otimes ... \otimes V_{m+n-1})\rangle$ is absolutely convergent for $t=1$ and all $v^\vee \in V^\vee$, then define
 \[f*_ig=(f*_ig)_1 \in \Hh_V(m+n-1). \]
 
 A \textit{geometric vertex operator algebra} is a $\ZZ$-graded $\CC$-vector space
@@ -929,7 +934,32 @@ However, $Ran(X)$ does not have the correct properties for algebraic sheaves to 
 \subsubsection{Definition}
 A \textit{factorization algebra} is a sheaf $\Ff$ on $Ran(X)$ and a section $1 \in \Ff_1(X)$ as follows:
 
-(and now I'm seeng a $\phi$ I don't even see a definition for.  Yeah, I'm tabling this until I get a hold of the second edition of the book.)
+(\tk I cannot understand my notes here and not a single book about this topic seems to actually be in the reading room so this almost certainly has some errors in it.  I'd like Pax to look it over but of course he's an undergrad so his email address is the only one I don't have)
+
+$\Ff$ has no sections supported on any subdiagonal, and there is an isomorphism
+\[\phi_{J/I}: j_{J/I}^*(\Ff_J) \rightarrow j_{J/I}^*(\boxtimes_{i \in I}\Ff_{f^{-1}(i)}). \]
+(\tk my notes say $\Ff_I$ for that $\FF_J$ but the latter is the one that makes basic sense; also there's no bigboxtimes so the notation is a stopgap)
+
+The functions $\phi_{J/I}$ should be functorial (\tk my notes say just ``Functoriality of $\phi_{J/I}$'' without any other mention of $\phi$ so I assume it's the aforementioned isos but not completely sure), and the unit works as follows: for any $f \in \Ff_1(U)$, the value \[1 \boxtimes f \in \Ff_1(U) \boxtimes \Ff_1(U) \subseteq \Ff_1 \boxtimes \Ff_1(U^2 \setminus \Delta) \simeq \Ff_2(U^2 \setminus \Delta)\] will correspond to a value
+\[g \in \Ff_2(U^2) \subseteq \Ff_2(U^2 \setminus \Delta) \]
+such that \[\phi_{2/1}(g|_{U^2 \setminus \Delta})=(1 \boxtimes f)|_{U^2 \setminus \Delta}\] and
+\[\Delta_{2/1}^*(g)=f, \]
+the first statement being like ``$g=1 \boxtimes f$'' and the second being the identity axiom for $1$.
+
+The value $1 \in \Ff_1(X)$ induces a map of sheaves $\Oo_X \rightarrow \Ff_1$, which can also be thought of as the identity similarly.  Using this, we can create two injections
+\[\Ff_1 \boxtimes \Oo_X \rightarrow \Ff_2 \leftarrow \Oo_X \boxtimes \Ff_1; \]
+when restricted to $\widehat{\Delta}$, these become isomorphisms and result in a canonical $\Dd$-module structure on $\Ff_1$; the maps $\phi_{J/I}$ will allow us to put these structures on $\Ff_n$ as well.
+
+Finally, one can create a short exact sequence
+\[0 \rightarrow \Ff_2 \rightarrow \Ff_1 \boxtimes \Ff_1 (\infty \Delta) \rightarrow \Delta_+(\Ff_1) \rightarrow 0, \]
+which lets us create a chiral bracket on $\Aa = \omega_X \otimes \Ff_1$; the Cousin complex will be solvable by means of similar operations on $\Ff_3$.
+
+The reverse functor, from chiral algebras to factorization algebras, involves the Chevalley-Cousin complex.
+
+(Rouquier, I think, mentioned something about a canonical chiral algebra (de Rham) relating to string theory/elliptic cohomology but that's all I wrote about this and I'm not sure it really fits in)
+
+(definition of factorization \textit{space})
+
 \section{Conformal blocks (W. Schlieper, May 18)}
 Recall from section (\ref{sec:chiraldef}) the definition of the vector bundle $\Vv_X$ for a vertex operator algebra $V$.  In addition, it's possible to define $\Yy_X$ an $\End{\Vv_x}$-valued section on $\Vv^*$; that is, for $a \in \Vv_x, \varphi \in \Vv^*_x$, and $s$ a section of $\Vv_x$ on $\Dd_x$ (i.e. $s \in V \otimes \widehat{\Oo_{X,x}}$), we have, given $s=Bf(z)$ under an isomorphism $\Oo_{X,x}\rightarrow \CC[[z]]$,
 \[\langle \varphi,\Yy_x(s)a \rangle \mapsto \langle \varphi,Y(B,z)a \rangle f(z) \]
@@ -1045,5 +1075,161 @@ and a corresponding embedding
 \[C_V(X,(x_i),(M_i)) \rightarrow C_{Vir_c}(X,(x_i),(M_i)). \]
 Note that even in the case $V_k(\gf)$, this is nontrivial, as the Sugawara operator is non-linear with respect to the affine Lie algebra.
 \subsection{Chiral correlation functions}
+For simplicity, for now assume that the $M_i$ have integral eigenvalues; the case where the eigenvalues are not integral can be done similarly but require further work.
+
+We would like to identify the conformal blocks with a subbundle of $(\Mm_1 \boxtimes ... \boxtimes \Mm_n)^*$ on
+\[\mathring{X}^n=X^n \setminus \Delta. \]
+(\tk not sure about mathring) on which the connection is closed, identifying conformal blocks on nearby points and producing a canonical way to describe the quantum states (up to possible monodromy).
+
+First, note the effect of including $V$ as a module: it acts as an identity module for conformal blocks, and can be removed.  More precisely, there is a \textit{canonical} isomorphism
+\[C_V(X,(x_1,...,x_n,y),(M_1,...,M_n,V)) \simeq C_V(X,(x_1,...,x_n),(M_1,...,M_n)) \]
+given by restricting $\varphi$ to $\Mm_{1,x_1} \otimes ... \otimes \Mm_{n,x_n} \otimes \vac$.
+
+The proof is as follows: Consider the section on $X \setminus \{x_i\}$ given by the definition of a conformal block, that restricts to $\langle \varphi,A_1 \otimes ... \otimes (\Yy^{M_i}_{x_i}\cdot A_i) \otimes ... \otimes A_n \rangle$ near $x_i$ for each $i$.
+
+Take the value of that section at $y \in X$: This extends to a section that should invert the canonical isomorphism..  However, we need to show that it actually is a conformal block.
+
+To do so, we construct a section of $(\Vv \otimes \Vv)^*$ on the space
+\[X^2 \setminus(  (\{x_i\} \times X) \cup (X \times \{x_i\}) \cup \Delta), \]
+which is the complement of a divisor that has three parts:
+\begin{itemize}
+\item The horizontal lines $y_1=x_i$.
+\item The vertical lines $y_2=x_i$.
+\item The diagonal $y_1=y_2$.
+\end{itemize}
+and the divisors intersect in two ways:
+\begin{itemize}
+\item A vertical and horizontal line $y_1=x_i,y_2=x_j,i \ne j$.  This is a relatively trivial intersection.
+\item $y_1=y_2=x_i$, which is the intersection of three lines.
+\end{itemize}
+The section can be found near the $i \ne j$ intersections by simply applying the relevant $\Yy$ to each factor, and near $y_1=y_2=x_i$ by using the locality property and identifying $\CC[[z,w]][z^{-1},w^{-1},(z-w)^{-1}]$ with the local neighborhood of $X^2$ around that point with the divisors removed.
+
+This can then be extended to the neighborhoods of each divisor by applying the conformal block.  To extend to the entire space, one uses what is called modification in the sense of Geometric Langlands to turn the filtration of meromorphic sections of $\Vv \otimes \Vv$ into one of \textit{holomorphic} sections on a different filtration of finite-rank vector bundles.  Then, one can pushforward to a projection and leverage that to show that the section extends to the entire space.
+
+\subsection{Two-point functions, $n$-point functions}
+An immediate corollary of this fact is that all the spaces $C_v(X,(x_i),V))_{i=1}^n$ are canonically isomorphic for all $n$ and all $x_i$.  For a given $\varphi \in C(X,x,V)$ let $\varphi_{x_1,...,x_n} \in C_V(X,(x_i),(V))$ be the corresponding conformal block.
+
+For $n=2$, there is a regular section $\varphi_2$ of the bundle $(\Vv \boxtimes \Vv)*$ over $X^2 \setminus \Delta$ gluing together the conformal blocks $\varphi_{x_1,x_2}$.  If $x_1$ and $x_2$ are both sufficiently close to $x$, then a coordinate $z$ can be identified and the values $z_1,z_2$ are the corresponding values of $x_1,x_2$ and the conformal block can be written
+\[\langle \varphi_2,A_1 \otimes A_2 \rangle = \langle \varphi, Y(A_1,z_1)Y(A_2,z_2)\vac \rangle \in \CC[[z_1,z_2]][(z_1-z_2)^{-1}]. \]
+
+For \textit{any} $\varphi \in \Vv_x^*$, this formula gives a horizontal section of $(\Vv \boxtimes \Vv)^*$ on $D_x^2 \setminus \Delta$, giving an embedding
+\[\Vv_x^2 \rightarrow \Gamma_\nabla(D_x^2,(\Vv \boxtimes \Vv)^*(\infty \Delta))=\hom_{\Dd_{D_x^2}}(\Vv \boxtimes \Vv,\Oo_{X^2}(\infty \Delta)), \]
+where $\Gamma_\nabla$ represents the horizontal global sections.  If $\varphi$ is a conformal block, however, this extends to a horizontal section on $X^2 \setminus \Delta$.
+
+In general, for $n$-point conformal blocks, if all the points are near a point $x$, it can be described as
+\[\langle \varphi, Y(A_1,z_1)...Y(A_n,z_n)\vac \rangle \in \CC[[z_i]][(z_i-z_j)^{-1}]. \]
+
+By requiring ``bootstrap conditions'', we can find a quotient $(\Vv^{\boxtimes n})^*(\infty \Delta) \rightarrow \Vv^*_n$ such that we get the commutative diagram
+\[
+  \begin{tikzcd}
+    C(X,x,V) \arrow[r,"\sim"] \arrow[d] & \Gamma_\Delta(X^n,\Vv_n^*) \arrow[d]\\
+    \Vv_x^* \arrow[r,"\sim"] & \Gamma_\Delta(D_x^n,\Vv_n^*)
+  \end{tikzcd}
+\]
+and these $\Vv_n^*$ will be the duals of sheaves $\Vv_n$ that relate to(are? \tk) the constituents of the factorization algebra.
+
+\subsection{Conformal blocks in genus zero}
+Now, we fix $X=\PP^1$ and fix points $0 \in X, \infty \in X$ once and for all.  Given this, we pick a global coordinate $t$ on $X \setminus \infty$ such that $t=0$ corresponds to the point $0$ and $t=\infty$ corresponds to the point $\infty$.
+
+To calculate the conformal blocks for the sphere, first note that $U(V)=\Gamma(D^\times,h(\Vv \otimes \Omega))$ can be described explicitly by its action on $V$, as the completion of the span of the Fourier coefficients $A_{(n)}$ in $\End(V)$.  The subspace $\Gamma(\PP^1 \setminus 0,\Vv_0 \otimes Omega)$ will be the vector space spanned by $A_{(n)}$, where $A$ is homogeneous of degree $m$ and $n \le 2(m-1)$.  In particular, since $A_{(-1)}\vac=A$, applying the Lie algebra to $\vac$ gets $\bigoplus_{n>0}V_n$ and
+\[H(\PP^1,0,V)=V/V_{>0}\simeq \CC \vac. \]
+
+Let $\varphi_0:V \rightarrow \CC$ be such that $\varphi_0(\vac)=1, \varphi_0(V_{>0})=0$.  Then $\varphi_0$ spans $C(\PP^1,0,V)$.
+
+To find the $n$-point functions, the canonical $n$-point function $\varphi_{x_1,...,x_n}$ corresponding to $\varphi_0$ should be a section on $\mathring{X}^n$; by using the canonical coordinate, this can be thought of as a function in
+\[\CC[z_1,...,z_n,(z_i-z_j)^{-1}] \]
+with finite asymptotics at $\infty$.  When all $x_i$ are near $0$, this becomes
+\[\langle \varphi_{x_1,...,x_n},A_1 \otimes ... \otimes A_n\rangle=\langle\varphi_0,Y(A_1,z_1)...Y(A_n,z_n)\vac \rangle \in \CC[[z_1,...,z_n]][(z_i-z_j)^{-1}].\]
+Since $\varphi_0$ vanishes on degree $>0$, apply the grading; graded elements of the formal power series ring will be polynomials proper, so the value will in fact lie in the above polynomial ring.  That this corresponds to $\varphi_0$ follows from checking  the claim at $A_i=\vac$.
+
+\subsubsection{The contragredient}
+Now, to replace $\varphi_0$ with a more general functional, by putting a corresponding module to $V^*$ at $\infty$.  By definition,
+\[\langle \varphi,\Yy_0(A) \cdot C\rangle=\langle \varphi, Y(A,t)C \rangle \in \CC[[t]] \quad A,C \in V, \varphi \in V^*. \]
+More tractable than the full dual is the graded dual
+\[V^\vee = \bigoplus_{n \ge 0}V_n^* \subset V^* \]
+as mentioned in section (\ref{sec:geomvoa}).  If $\varphi \in V^\vee$, the grading implies that $\langle \varphi, Y(A,t)C \rangle \in \CC[t^{\pm 1}]$.
+
+The global coordinate on $\PP^1 \setminus \{0,\infty\}$ is unique up to action by $\CC^\times \subset \Aut \Oo$ and corresponds to tangent vectors at $0$; this preserves $V^\vee$, so let $\Vv_0$ and $\Vv^\vee_0$ be the twists of $V$ and $V^\vee$ by the $\CC^\times$-torsor of tangent vectors at $0$.
+
+For $C \in \Vv_0, \varphi \in \Vv^\vee_0$, $\langle \varphi, \Yy_0 \cdot C \rangle$ of $\Vv^*|_{D_0^\times}$ extends to a meromorphic section on $\PP^1$ with poles only at $0$ and $\infty$.
+
+What does this section look like near $\infty$? Consider the local coordinate $u=t^{-1}$ at $\infty$; for a point $x \in \PP^1$ such that $x$'s $u$ coordinate is $z$ and its $t$-coordinate is $z^{-1}$, we can switch between the two corresponding coordinates around $x$
+\[u_z=u-z \quad \widetilde{u_z}=t-z^{-1}=u^{-1}-z^{-1} \]
+by
+\begin{align}
+  u_z&=\mu_z(\widetilde{u_z})\\
+  \mu_z(y)&=(y+z^{-1})^{-1}-z=-\frac{z^2y}{zy+1}=-z^2y+z^3y^2-...\\
+  &=e^{-zy^2\partial_y}((-z^{-2})^{-y\partial y}y).
+\end{align}
+This action produces $R(\mu_u)=e^{uL_1}(-u^{-2})^{L_0}$ as its action on $V$, so for $A \in V$, the isoorphism taking $D$ to $D_\infty$ gives
+\[\langle \varphi,\Yy_0 \cdot C \rangle|_{D_\infty^\times}=\langle \varphi,Y(e^{uL_1}(-u^2)^{L_0}A,u^{-1})C \rangle, \]
+which can be made into a linear map $\widetilde{Y}: V \rightarrow \End V^\vee[[u^{-1}]]$ making $V^\vee$ into a $V$-module, called the \textit{contragredient module}.  A similar module structure can be found for the graded dual of any module $M$ in a similar way.
+
+(\tk should I put the proof using the involution here?  It's the proof I used for my notes.)
+
+\subsubsection{Conformal blocks as operadic maps}
+Consider $C(\PP^1,(0,\infty),(V,V^\vee))$, and $\Phi_0: V \otimes V^\vee \rightarrow \CC$ the natural pairing.  $\Phi_0$ is a conformal block, as $\Yy$ becoming $\widetilde{Y}$ is actually the definition of $\widetilde{Y}$.  Then,
+\[C(\PP^1,((x_i),\infty),((V),V^\vee)) \simeq C(\PP^1,(0,\infty),(V,V^\vee))\]
+and
+\[\langle \Phi_{x_1,...,x_n},A_1 \otimes ... \otimes A_n \otimes \varphi \rangle = \langle \varphi, Y(A_1,z_1)...Y(A_n,z_n)\vac \rangle \in \CC[z_1,...,z_n,(z_i-z_j)^{-1}]. \]
+
+In particular, when $n=2$, the canonical element of $C(\PP^1,(0,z,\infty),(V,V,V^\vee))$ is described precisely by the action of multiplication in the vertex operator algebra; that it is a conformal block relates to the existence of the $n=3$ conformal block in $C(\PP^1,(0,z,w,\infty),(V,V,V,V^\vee))$, which is itself the element defined by the locality and Cousin/associativity properties.
+
+In fact, all these conformal blocks are precisely the functionals used to define a geometric Lie algebra in (\ref{sec:geomvoa}).  To show that things such as the gluing axiom are valid using the conformal block formalism, however, requires a more sophisticated process: Recall the gluing process, in which circles of radius $r$ and $1/r$ were removed, respectively, and consider instead gluing using arbitrary circles.  This is equivalent to \textit{scaling} one or both of the spheres with tubes.  If one considers a Riemann surface with a circle (in some atlas) removed, letting the radius of the circle approach zero will lead to sheaves and functions equivalent to removing a point instead.  Therefore, the process of gluing at circles has as its limiting case a process of gluing at punctures, which can be defined algebraically.
+
+When we glue at a puncture, the actual process involves adding a point that ``belongs to'' both surfaces.  When this is done, the result will be a \textit{singular} curve.  When conformal blocks are extended into (twisted) $\Dd$-module structures on the moduli space of curves, the singular curves necessary to understand are the ones that are introduced by the Deligne compactification, and in the cases of the rational vertex operator algebras based on the Kac-Moody and Virasoro algebras\footnote{quotients of the KM and Virasoro algebras defined in (\ref{sec:latticeaffine}) such that the category of representations is semisimple with finitely many simple modules}, the relation of the conformal blocks on a singular curve to both nearby (in the sense of the Deligne compactification) smooth curves and the resolution of singularities is known.
+\subsection{The Knizhnik-Zamolodchikov equations}
+Let $\gf$ be a finite-dimensional simple Lie algebra.  In the case $V=V_k(\gf)$ and $X=\PP^1$, there is a nice, classical way to describe the conformal blocks and horizontal sections thereof.
+
+Start by fixing $X=\PP^1$, the points $0,1,\infty$ and $N$ points $\xv=(x_1,...,x_N)$, with $x_i \ne \infty$.  The choice of tangent vector at each $x_i$ can be fixed by translating the vector $1 \in \CC \simeq T_0\PP^1$.
+
+To streamline the Kac-Moody-specific definition of conformal blocks, first define the loop group at a point $L\gf(x_i):=\gf((t-x_i))$ and the diagonal central extension
+\[0 \rightarrow \CC \cdot K \rightarrow \ghat(\xv) \rightarrow \bigoplus_{i=1}^N L\gf(x_i) \rightarrow 0 \]
+defining $\ghat(\xv)$, where the restriction to each coordinate is exactly the usual $\ghat$.  The Residue Theorem implies a map
+\[\gf \otimes \CC[\PP^1 \setminus \{x_1,...,x_n\}] \rightarrow \ghat(\xv). \]
+
+The representations of $V_k(\gf)$ can all be described as follows: Let $M \in \gf-mod$.  Then,
+\[\MM^k=\Ind^{\ghat}_{\gf[[t]] \oplus \CC \cdot K}M \]
+will be a representation of $V_k(\gf)$.  Let $M_1,...,M_N \in \gf-mod$.  Then,
+\[C_{V_k(\gf)}(\PP^1,\xv,(\MM_i^k)) \simeq \hom_\gf\left(\bigotimes_i M_i,\CC \right). \]
+The proof proceeds as follows:
+
+The Poincaré-Birkhoff-Witt theorem produces an isomorphism
+\[\MM_i^k=U((t-x_i)^{-1}\gf[(t-x_i)^{-1}]) \cdot M_i \simeq V_k(\gf) \otimes M_i \]
+
+A formal version of Čech cohomology leads to these identities:
+\begin{align}
+  \bigoplus_i \CC((t-x_i)) &= \bigoplus_i \CC[[t-x_i]] + \CC[\PP^1 \setminus \{x_i\}]\label{cech1}\\
+  \CC &= \bigoplus_i \CC[[t-x_i]] \cap \CC[\PP^1 \setminus \{x_i\}].\label{cech2}
+\end{align}
+
+Making clever use of (\ref{cech1}), one can show that any functional on $\bigotimes_i \MM_i$ can be determined by its values on $\bigotimes_i M_i$; making clever use of (\ref{cech2}), one can show that any relation required between elements of $\bigotimes_i M_i$ must be describable just in terms of $\gf$-invariance itself.
+(I don't think Ben-Zvi/Frenkel actually prove this in full in the K-M case, just the Heisenberg one)
+
+\subsubsection{Derivation of the KZ equations}
+First, note that $\gf \otimes \CC[\PP^1 \setminus \{x_i\}]$ can be expanded onto the entire moduli space as $\gf \otimes \Bb_N$, where
+\[\Bb_N \subsetneq \CC[t,x_i,(x_i-x_j)^{-1},(t-x_i)^{-1}]_{i \ne j} \]
+is the space of functions on $N$ points that behave when $t \rightarrow \infty$.
+
+On the space of functionals (and thus the conformal blocks) on $\bigotimes_i \MM_i$, the connection will be defined in terms of
+\[\nabla_i = \frac{\partial}{\partial x_i} - L^{(i)*}_{-1}, \]
+where $(i)$ means the Virasoro coefficient action only on the $i$th component.  Recall the Sugawara conformal vector
+\[\omega = \frac{1}{2(k+h^\vee)} \sum_a J_{a,-1}J^a_{-1} \vac. \]
+From this, we can get the translation operator
+\[L_{-1} = \frac{1}{2(k+h^\vee)} \sum_{m \in \ZZ} \sum_a \normord{J_{a,m}J^a_{-m-1}}. \]
+To find the connection on the conformal blocks, we merely need to see how $L_{-1}\eta$ acts on $\bigotimes_i M_i$, for $\eta$ a conformal block.  Recall, for an element $v \in M_i$,
+\begin{align}
+  J^a_m \cdot v&=0 \quad m>0\\
+  J^a_0 \cdot v=J^a\cdot v,
+\end{align}
+so the only terms of the translation operator that will not be sent to $0$ immediately are those for which $m=0$ or $m=-1$, which can be combined into a single term by the inherent symmetry of normal ordering and invariance of the Casimir sums on the basis.
+Then, for any $w \in \bigotimes_i M_i$,
+\[(L^{(i)*}_{-1}\eta)(w)=\eta(L^{(i)}_{-1}w)=\frac{1}{k+h^\vee}\eta \left( \sum_a (J^a_{-1})^{(i)}(J_{a,0})^{(i)}w \right). \]
+
+Recall that $(J^a_{-1})^{(i)}=J^a \otimes (t-x_i)^{-1}$.  To get rid of this term from the $(i)$ term, simply apply $-J^a \otimes (t-x_i)^{-1} \in \gf \otimes \Bb_n$, which for every tensor term other than $i$ acts as $1/(x_i-x_j)J^a_0$, giving
+\[(L^{(i)*}_{-1}\eta)(w)=\sum_{j \ne i}\frac{1}{x_i-x_j} \sum_a J_a^{(i)}J^{a(j)} =: \sum_{j \ne i} \frac{t_{ij}}{x_i-x_j} \] 
+and the KZ equations
+\[dF = \sum_{i \ne j}t_{ij}F \cdot d\log(x_i-x_j) \]
+for conformal blocks.  
 \end{document}
  
