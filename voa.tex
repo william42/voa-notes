@@ -62,7 +62,7 @@ Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compil
 Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
 \[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
 correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
-\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (\tk year))}
+\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992))}
 \label{sec:monmoon}
 There is a natural graded representation
 \[V^\natural = V_0 \oplus V_1 \oplus ... \]
@@ -125,7 +125,7 @@ Given a vertex operator algebra $V$, a projective algebraic curve $X$, and a fin
 
 In particular, given $X=\CP^1$, points $0,1,\infty$, and $V$ itself attached at $0$ and $1$ and the restricted dual $V^\wedge$ attached at $\infty$, the vertex operators themselves turn out to be conformal blocks; if more points are attached, then the corresponding conformal blocks will turn out to be the composed vertex operators, which can be combined into an operadic approach.
 
-(\tk think about how to summarize factorization and chiral algebras (Beilinson-Drinfeld) when it's not 10:30 pm)
+A similar construction to the vertex algebra is the \textit{factorization algebra} developed by Beilinson and Drinfeld: given an algebraic curve $X$, we construct a ``sheaf'' on the space of finite subsets of $X$ and a specialized product structure with singularities on the diagonals; this turns out to be equivalent to the \textit{chiral algebra} also developed by Beilinson and Drinfeld, in which we construct a $\Dd$-module on $X$ with a structure similar to a Lie bracket on $X^2$ with a singularity on the diagonal.
 
 (\tk probably mention rational VOAs here?  I think I might wait 'til I see what Kevin has planned)
 
@@ -140,7 +140,6 @@ In particular, given $X=\CP^1$, points $0,1,\infty$, and $V$ itself attached at 
 \label{sec:defheis}
 
 \subsection{Formal distributions}
-(\tk is this section redundant with the intro section?)
 Let $R$ be a $\CC$-algebra.  Then, for any integer $n$, the \textit{$R$-module of formal distributions} $R[[z_1^{\pm 1},...,z_n^{\pm 1}]]$ can be defined simply as the set of $\ZZ^n$-tuples of elements of $R$, thought of accordingly as formal power series extending in all directions.  Formal distributions generally do not form a ring; however, given two formal distributions $a(z),b(z) \in R[[z]]$ defined as
 \begin{align*}
   a(z)&=\sum_{n \in \ZZ}a_nz^n\\
@@ -268,8 +267,11 @@ If $Y(A,z)$ and $Y(B,w)$ commute for all $A,B \in V$, then all vertex operators 
 Using this multiplication, $V$ is a commutative algebra, with $T$ acting as a derivation, and
 \[Y(A,z)B=(e^{zT}A) \circ B \quad \forall A,B \in V \]
 
-(\tk It's probably worth it to mention the associativity/Cousin property $Y(Y(A,z-w)B,w)"="Y(A,z)Y(B,w)$ here? and $Y(TA,z)$? Both come from the state-field correspondence, which we didn't go over)
-
+Given a field $A(z)$ on a vertex algebra $V$ local to all $Y(B,z)$, if we have an $a \in V$ such that
+\[A(z)\vac=Y(a,z) \vac, \]
+or, equivalently, $\partial_z A(z) \vac=TA(z)\vac$ and $A(z)\vac \in V[[z]]$, then we have that $A(z)=Y(a,z)$.  In particular \footnote{after extending by $w$ and $z-w$} note the field $Y(A,z)Y(B,w)$ extended to maps to $V[[z,w]][z^{-1},w^{-1},(z-w)^{-1}]$ will be the same as the extension of $Y(Y(A,z-w)B,w)$ to the same: this corresponds to associativity in the regular algebra case and is usually called associativity, \textit{the Cousin property}, and when written explicitly as
+\[Y(A,z)Y(B,w)=Y(Y(A,z-w)B,w)=\sum_{n \in \ZZ}\frac{Y(A_{(n)}B,w)}{(z-w)^{n+1}} \]
+(where $1/(z-w)$ is expanded at $w$) is called the \textit{operator product expansion}.  These properties are incredibly important in terms of being able to calculate any properties at all of vertex algebras.
 \subsection{The Heisenberg vertex algebra}
 
 \subsubsection{The Heisenberg Lie algebra}
@@ -290,7 +292,7 @@ Alternatively, if we extended instead the subalgebra $\CC[t^{\pm 1}]$ of $\CC((t
 \end{align}
 
 (This is a part that I'm writing a bit differently so as to not have to use a bunch of tildes)
-Note that it is possible to give the Heisenberg algebra a ``triangular decomposition''(\tk is this the right name?) as 
+Note that it is possible to give the Heisenberg algebra a ``triangular decomposition'' as 
 \[\Hh \simeq_{\CC-Mod} t^{-1}\CC[t^{-1}] \oplus \one \oplus \CC[[t]].  \]
 
 \subsubsection{The Fock space}
@@ -433,7 +435,7 @@ Let $\gf$ be a finite-dimensional simple Lie algebra over $\CC$.  Define the \te
   L\gf=\gf((t))&=\gf \otimes \CC((t))\\
   [A \otimes f(t),B \otimes g(t)]&=[A,B] \otimes f(t)g(t)
 \end{align*}
-The \textit{affine Lie algebra} or \textit{affine Kac-Moody algebra}(\tk doesn't the latter also have a derivation?) $\ghat$ is defined as a central extension of $L\gf$
+The \textit{affine Lie algebra} or \textit{affine Kac-Moody algebra}\footnote{Some definitions, such as Wikipedia's, define the algebra as the semidirect product of the above algebra with a derivation that makes powers of $t$ into a grading; however, in the context of vertex operator algebras, the grading is considered part of the definition as well as being implied by the Sugawara conformal vector.} $\ghat$ is defined as a central extension of $L\gf$
 \[0 \rightarrow \CC \cdot K \rightarrow \ghat \rightarrow L\gf \rightarrow 0 \]
 as follows: first, we need an invariant form on $\gf$.  Start with the Killing form
 \[(x,y)_K=Tr_\gf(ad_xad_y) \]
@@ -887,7 +889,7 @@ commutes.
 \end{itemize}
 A \textit{universal chiral algebra} is an assignment $X \mapsto \Aa_X$ for every smooth projective algebraic curve over $\CC$ such that for every étale map $f: X' \rightarrow X$ we have $f^*(\Aa_X) \simeq \Aa_{X'}$.
 
-We would like to be able to relate quasiconformal vertex algebras (a superset of conformal vertex algebras) to universal chiral algebras, via conformal blocks (which will be explained more in (\tk FORWARD REFERENCE); note that Ben-Zvi and Frenkel(see \tk reference) actually introduce conformal blocks first).  To do this, we use the Virasoro action of a conformal vertex algebra to produce a vector bundle.
+We would like to be able to relate quasiconformal vertex algebras (a superset of conformal vertex algebras) to universal chiral algebras, via conformal blocks (which will be explained more in (\ref{sec:confblocks}); note that Ben-Zvi and Frenkel(see \tk reference) actually introduce conformal blocks first).  To do this, we use the Virasoro action of a conformal vertex algebra to produce a vector bundle.
 
 Given any algebraic curve $X$ and any (geometric) point $x \in X$, the completed local ring $\widehat{\Oo_{X,x}}$ is isomorphic to the abstract ring $\CC[[z]]$.  The space
 \[\Aut_X=\{(x,f_x)|x \in X, f_x: \CC[[z]] \overset{\sim}{\rightarrow} \widehat{\Oo_{X,x}} \} \]
@@ -961,6 +963,7 @@ The reverse functor, from chiral algebras to factorization algebras, involves th
 (definition of factorization \textit{space})
 
 \section{Conformal blocks (W. Schlieper, May 18)}
+\label{sec:confblocks}
 Recall from section (\ref{sec:chiraldef}) the definition of the vector bundle $\Vv_X$ for a vertex operator algebra $V$.  In addition, it's possible to define $\Yy_X$ an $\End{\Vv_x}$-valued section on $\Vv^*$; that is, for $a \in \Vv_x, \varphi \in \Vv^*_x$, and $s$ a section of $\Vv_x$ on $\Dd_x$ (i.e. $s \in V \otimes \widehat{\Oo_{X,x}}$), we have, given $s=Bf(z)$ under an isomorphism $\Oo_{X,x}\rightarrow \CC[[z]]$,
 \[\langle \varphi,\Yy_x(s)a \rangle \mapsto \langle \varphi,Y(B,z)a \rangle f(z) \]
 under that same isomorphism.
@@ -1079,7 +1082,7 @@ For simplicity, for now assume that the $M_i$ have integral eigenvalues; the cas
 
 We would like to identify the conformal blocks with a subbundle of $(\Mm_1 \boxtimes ... \boxtimes \Mm_n)^*$ on
 \[\mathring{X}^n=X^n \setminus \Delta. \]
-(\tk not sure about mathring) on which the connection is closed, identifying conformal blocks on nearby points and producing a canonical way to describe the quantum states (up to possible monodromy).
+on which the connection is closed, identifying conformal blocks on nearby points and producing a canonical way to describe the quantum states (up to possible monodromy).
 
 First, note the effect of including $V$ as a module: it acts as an identity module for conformal blocks, and can be removed.  More precisely, there is a \textit{canonical} isomorphism
 \[C_V(X,(x_1,...,x_n,y),(M_1,...,M_n,V)) \simeq C_V(X,(x_1,...,x_n),(M_1,...,M_n)) \]
