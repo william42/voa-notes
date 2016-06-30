@@ -9,6 +9,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{qtree}
+\usepackage{cite}
 \author{William Schlieper}
 \title{Vertex Operator Algebras}
 \newcommand{\RR}{\mathbold{R}}
@@ -62,7 +63,7 @@ Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compil
 Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
 \[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
 correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
-\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992))}
+\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992)) (\tk ref)}
 \label{sec:monmoon}
 There is a natural graded representation
 \[V^\natural = V_0 \oplus V_1 \oplus ... \]
@@ -73,7 +74,7 @@ Furthermore, for $g \in M$, the graded character
 is a modular function; that is, for some finite index subgroup of $SL_2(\ZZ)$ acting on $\tau$ by Möbius transformations, $Tr_{V^\natural}(g;\tau)$ is left invariant.
 
 \subsection{Vertex Operator Algebras and Conformal Field Theories}
-This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (\tk some Kac reference goes here) is linked to modular forms as well.
+This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (see \cite{MR1104219}) is linked to modular forms as well.
 
 In fact, vertex operator algebras are related to conformal field theory in $2$ dimensions, where the relevant local symmetries, described in terms of a complex number $z$, cleanly split into the symmetries holomorphic in $z$ and those holomorphic in $\overline{z}$; each of these will correspond to a VOA, and the CFT as a whole will link to a bimodule over both.  For more of this from a physics point of view, there's probably a good physics paper I can reference, and the ``full'' version of this will do so.
 
@@ -546,7 +547,7 @@ with the action of $b_i$ related to the Weyl algebra action in much the same way
 
 Note that up to isomorphism, the irreducible graded $\widetilde{\Hh}$-modules with gradation (such that $\deg b_n=-n$) bounded below are precisely the modules $\pi_\lambda$.
 
-In a similar process\footnote{Actually the same process, once representations are defined in (FORWARD REFERENCE)} to the vertex operator of the conformal vector $\omega=\frac{1}{2}b_{-1}^2\vac$ on $\pi$, there exists an action of $Vir$ on $\pi_\lambda$ given by
+In a similar process\footnote{Actually the same process, once representations are defined in \ref{sec:voareps}} to the vertex operator of the conformal vector $\omega=\frac{1}{2}b_{-1}^2\vac$ on $\pi$, there exists an action of $Vir$ on $\pi_\lambda$ given by
 \[L_n = \frac{1}{2}\sum_{m \in \ZZ}:b_mb_{n-m}: \quad n \in \ZZ \]
 with central charge $1$; in particular, $\deg(|\lambda\rangle)|\lambda\rangle=L_0|\lambda\rangle=\frac{1}{2}\lambda^2|\lambda\rangle$ is a canonical degree for the generating vector $|\lambda\rangle$.
 
@@ -635,7 +636,7 @@ Conversely, it is possible to extract a definition for $\gf$ from $V_L$: note th
 \[(V_L)_1 = \hh \vac \oplus \bigoplus_{(\lambda,\lambda)=2}|\lambda\rangle, \]
 and that locality and associativity will imply the Jacobi identity for the bracket
 \[[g,h]=g_{(0)}h \quad g,h \in V_1 \]
-for any vertex operator algebra $V$.
+for any vertex operator algebra $V$.  Note that the approach in \cite{MR1854697}, also using a double cover, can in fact be derived from the vertex operator approach.
 \section{Operadic approach to vertex algebras (Ben West, May 4)}
 
 \subsection{Moduli space of binary trees}
@@ -796,7 +797,7 @@ is a power series in two local coordinates specifically chosen such that the Vir
 \end{enumerate}
 Theorem (5.4.5, 7.2.2 in Huang's 2d conformal geometry): This category is isomorphic to the category of vertex operator algebras.
 
-Note that all the structures in this section were, despite not using the terms, examples of (partial) operads. For more on operads, see (\tk reference).
+Note that all the structures in this section were, despite not using the terms, examples of (partial) operads. For more on operads, see \cite{MR1898414}.
 \section{Factorization algebras (Pax Kivimae, May 11)}
 A similar idea to that of a vertex algebra is a construction called the factorization algebra, which is a particular sort of algebra defined as a sheaf on an algebraic curve $X$.  In fact, the quasi-conformal vertex algebras are equivalent to universal factorization algebras.  Both can be related to another construction called chiral algebras, which are defined as $\Dd$-modules equipped with a product similar to a Lie bracket.
 
@@ -889,7 +890,7 @@ commutes.
 \end{itemize}
 A \textit{universal chiral algebra} is an assignment $X \mapsto \Aa_X$ for every smooth projective algebraic curve over $\CC$ such that for every étale map $f: X' \rightarrow X$ we have $f^*(\Aa_X) \simeq \Aa_{X'}$.
 
-We would like to be able to relate quasiconformal vertex algebras (a superset of conformal vertex algebras) to universal chiral algebras, via conformal blocks (which will be explained more in (\ref{sec:confblocks}); note that Ben-Zvi and Frenkel(see \tk reference) actually introduce conformal blocks first).  To do this, we use the Virasoro action of a conformal vertex algebra to produce a vector bundle.
+We would like to be able to relate quasiconformal vertex algebras (a superset of conformal vertex algebras) to universal chiral algebras, via conformal blocks (which will be explained more in (\ref{sec:confblocks}); note that \cite{MR2082709} actually introduces conformal blocks first).  To do this, we use the Virasoro action of a conformal vertex algebra to produce a vector bundle.
 
 Given any algebraic curve $X$ and any (geometric) point $x \in X$, the completed local ring $\widehat{\Oo_{X,x}}$ is isomorphic to the abstract ring $\CC[[z]]$.  The space
 \[\Aut_X=\{(x,f_x)|x \in X, f_x: \CC[[z]] \overset{\sim}{\rightarrow} \widehat{\Oo_{X,x}} \} \]
@@ -1024,6 +1025,7 @@ Recall that for all $A \in \Vv_x \simeq V, \varphi \in \hom_\CC(\Vv_x,\CC) = \Vv
 will be a section of $\Vv^*$ on $D_x^\times$.  By the Strong Residue Theorem(\tk a ref for this was hard to find when I was preparing my talk, so I should find one now), the condition of being $\Gamma(\Sigma,h(\Vv \otimes \Omega))$-invariant is equivalent to the aforementioned section having an extension from $D_x^\times$ to $X \setminus x$.  In particular, this is a dual definition of the conformal blocks.
 
 \subsection{Modules of vertex algebras}
+\label{sec:voareps}
 Let $V$ be a graded vertex algebra over $\CC$.  A complex vector space $M$ is a \textit{$V$-module} if it has:
 \begin{itemize}
 \item A gradation $M=\bigoplus_{n \in \ZZ}M_n$,
@@ -1041,7 +1043,7 @@ satisfying the following properties:
   \end{itemize}
 
 \end{itemize}
-Note that the first edition of (\tk reference) defines a module in a different, but equivalent, way.
+Note that the first edition of \cite{MR2082709} defines a module in a different, but equivalent, way.
 
 When $V$ is a vertex operator algebra, a $V$-module $M$ is called \textit{conformal} if the action of $L_0=\omega_{(1)}$ differs from that implied by the grading by a constant.  Given a vertex operator algebra $V$ and conformal $V$-module $M$, the Virasoro action on $V$ is inherited by $M$, and so we can create a $\Dd$-module (vector bundle with connection) $\Mm$ with a similar action of $h(\Vv \otimes \Omega)$ and a similar endomorphism-valued section $\Yy_M$.  However, if the gradation is no longer integral, then the space must be extended by the set of nonzero tangent vectors at a point, as $L_0$ acting nonintegrally means that the full group $\Aut \CC[[z]]$ no longer acts.
 
@@ -1234,5 +1236,8 @@ Recall that $(J^a_{-1})^{(i)}=J^a \otimes (t-x_i)^{-1}$.  To get rid of this ter
 and the KZ equations
 \[dF = \sum_{i \ne j}t_{ij}F \cdot d\log(x_i-x_j) \]
 for conformal blocks.  
+
+\bibliography{refs}{}
+\bibliographystyle{alpha}
 \end{document}
  

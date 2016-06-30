@@ -4,3 +4,5 @@
 *.toc
 *.aux
 *.out
+*.bbl
+*.blg
