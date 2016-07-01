@@ -76,9 +76,10 @@ is a modular function; that is, for some finite index subgroup of $SL_2(\ZZ)$ ac
 \subsection{Vertex Operator Algebras and Conformal Field Theories}
 This representation of the monster has the structure of a vertex operator algebra, and, in fact, one good way to \textit{define} the Monster is simply to define it as the automorphisms of $V^\natural$ preserving the vertex operator algebra structure.  Of course, the previous sentence begs the question, quite strongly, of what a vertex operator algebra even \textit{is}.  Here, a hint is provided by the fact that Borcherds's proof uses a variant of the Weyl-Kac character formula to calculate traces, which for affine Kac-Moody algebras (see \cite{MR1104219}) is linked to modular forms as well.
 
-In fact, vertex operator algebras are related to conformal field theory in $2$ dimensions, where the relevant local symmetries, described in terms of a complex number $z$, cleanly split into the symmetries holomorphic in $z$ and those holomorphic in $\overline{z}$; each of these will correspond to a VOA, and the CFT as a whole will link to a bimodule over both.  For more of this from a physics point of view, there's probably a good physics paper I can reference, and the ``full'' version of this will do so.
+In fact, vertex operator algebras are related to conformal field theory in $2$ dimensions, where the relevant local symmetries, described in terms of a complex number $z$, cleanly split into the symmetries holomorphic in $z$ and those holomorphic in $\overline{z}$; each of these will correspond to a VOA, and the CFT as a whole will link to a bimodule over both.  For more of this from a physics point of view, see \cite{2005hep.th....9027G}
 
 \subsection{Formal power series}
+\label{sec:formalpow}
 
 Unlike the definitions preferred by physicists, the vertex operator algebra is an algebraic construction based on formal power series, so it is more abstract.  An important space of ``functions'' in this characterization is the \textit{formal distributions} $\CC[[z^{\pm 1}]]$, which consists of all abstract sums
 \[a(z)=\sum_{n \in \ZZ} a_n z^n \quad a_n \in \CC. \]
@@ -150,16 +151,18 @@ there is a product in \textit{different} variables
 \[a(z)b(w) = \sum_{m,n \in \ZZ}a_mb_nz^mw^n. \]
 Furthermore, the $R$-module structure can be extended to $R[z_1^{\pm 1},...,z_n^{\pm 1}]$ by multiplying and interleaving the finite with the infinite sum.
 
-(\tk mention the formal delta function again?)
-
 To ``evaluate'' formal distributions, since getting any actual values in the context of infinite power series is impossible, the correct idea is instead to use the residue as the formal version of the integral around a small circle around $0$: as such, 
 \[\Res_{z=0}a(z)=a_{-1} \]
 and, in fact, for vertex algebra purposes it makes more sense to number formal distributions using the residue, which we will denote as
 \begin{align*}
   a(z)&=\sum_{n \in \ZZ}a_{(n)}z^{-n-1}\\
-  a_{(n)}&=\Res_{z=0}
+  a_{(n)}&=\Res_{z=0}a(z)z^n.
 \end{align*}
 
+Recall the formal delta function from \ref{sec:formalpow}, defined as
+\[\delta(z,w)=\sum_{n \in \ZZ}z^nw^{-n-1}, \]
+(note that it is sometimes(\tk need to make my notation on this consistent) also denoted as $\delta(z-w)$) and the fact that it satisfies
+\[(z-w)\delta(z,w)=0. \]
 \subsection{Fields and locality}
 Let $V$ be a vector space over $\CC$.  We define a \textit{field} to be an element
 \[A(z) \in \End_\CC(V)[[z^{\pm 1}]] \quad A(z)=\sum_{n \in \ZZ} A_{(n)}z^{-n-1} \]
