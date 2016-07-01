@@ -63,7 +63,7 @@ Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compil
 Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
 \[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
 correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
-\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992)) (\tk ref)}
+\subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992)) \cite{MR1172696}}
 \label{sec:monmoon}
 There is a natural graded representation
 \[V^\natural = V_0 \oplus V_1 \oplus ... \]
@@ -105,7 +105,7 @@ for some $n \ge 0$.
 
 \subsection{Vertex algebras}
 
-(\tk not sure if I want to put the actual VA def here or later; probably mention ``creation of boson''?)
+A vertex algebra will be defined as a vector space $V$, together with a formal distribution $Y(A,z)$ over $\End(V)$ for every $A \in V$ such that $Y(A,z)$ and $Y(B,w)$ are local for all $A,B \in V$, as well as some conditions involving the identity or vacuum $\vac$
 
 The simplest case of a vertex algebra is a commutative one, where the locality condition on the vertex operators is strengthened to actual commutation, or, equivalently, all negative-degree terms are zero.  In this case, we have
 \[Y(A,z)=\sum_{n=0}^{\infty} \frac{z^n}{n!}(T^nA) \]
@@ -380,7 +380,7 @@ For $m=-1$ (that is, the value at $0$), all values of $n$ other than $n=-k$ will
   &=b_{-k}A.
 \end{align}
 
-\tk My notes say the translation axiom is true by definition, but I think there's a few minor things that need to be checked with normal ordering.
+The translation axiom is true by definition for $b_j\vac$ and follows for other elements by a generalization of the Leibniz rule.
 
 For locality, we again use an induction, but a more complicated one.  First, we show that $b(z)$ is local to itself; that all $Y(b_{-k}\vac,z)$ are mutually local will follow from applying derivatives.  The induction step relies on repeated application of a key lemma called Dong's Lemma.
 
@@ -1022,7 +1022,7 @@ where $\Sigma=X \setminus x$.
 
 Recall that for all $A \in \Vv_x \simeq V, \varphi \in \hom_\CC(\Vv_x,\CC) = \Vv_x^*$, the product
 \[\langle \varphi,\Yy_x \cdot A \rangle \]
-will be a section of $\Vv^*$ on $D_x^\times$.  By the Strong Residue Theorem(\tk a ref for this was hard to find when I was preparing my talk, so I should find one now), the condition of being $\Gamma(\Sigma,h(\Vv \otimes \Omega))$-invariant is equivalent to the aforementioned section having an extension from $D_x^\times$ to $X \setminus x$.  In particular, this is a dual definition of the conformal blocks.
+will be a section of $\Vv^*$ on $D_x^\times$.  By the Strong Residue Theorem(defined and proven in \cite{MR0227171}), the condition of being $\Gamma(\Sigma,h(\Vv \otimes \Omega))$-invariant is equivalent to the aforementioned section having an extension from $D_x^\times$ to $X \setminus x$.  In particular, this is a dual definition of the conformal blocks.
 
 \subsection{Modules of vertex algebras}
 \label{sec:voareps}
@@ -1131,7 +1131,7 @@ By requiring ``bootstrap conditions'', we can find a quotient $(\Vv^{\boxtimes n
     \Vv_x^* \arrow[r,"\sim"] & \Gamma_\Delta(D_x^n,\Vv_n^*)
   \end{tikzcd}
 \]
-and these $\Vv_n^*$ will be the duals of sheaves $\Vv_n$ that relate to(are? \tk) the constituents of the factorization algebra.
+and these $\Vv_n^*$ will be the duals of sheaves $\Vv_n$ that constitute the factorization algebra.
 
 \subsection{Conformal blocks in genus zero}
 Now, we fix $X=\PP^1$ and fix points $0 \in X, \infty \in X$ once and for all.  Given this, we pick a global coordinate $t$ on $X \setminus \infty$ such that $t=0$ corresponds to the point $0$ and $t=\infty$ corresponds to the point $\infty$.
