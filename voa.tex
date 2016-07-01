@@ -51,7 +51,7 @@
 \maketitle
 This document is a reconstruction based on my notes of the vertex operator algebra seminar that ran during Spring Quarter 2016, run by Raphaël Rouquier.  Some notation has been changed (in particular, for the Heisenberg Fock space), some commentary has been added to my handwritten notes, and some definitions and concepts have been moved around, so as to make things more clear for the reader.
 
-Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compile this document, such as XeTeX, provided in most \TeX\ distributions.
+%Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compile this document, such as XeTeX, provided in most \TeX\ distributions.
 \tableofcontents
 
 \section{Introduction (Raphaël Rouquier, March 30)}
@@ -60,7 +60,9 @@ Right now, you might need a Unicode-based \LaTeX\ interpreter to properly compil
 \subsection{Motivation}
 \label{sec:mot}
 (\tk can probably load this section with references, really)
-Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which, though it usually isn't, can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
+%nocites: Kac's for beginners book; FLM VOAs&Monster; BD Chiral algs; chiral Koszul 
+\nocite{MR1651389,MR996026,MR2058353,MR2891861}
+Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
 \[j(\tau)=q^{-1}+744+196884q+21493760q^2+... \quad q=\exp(2 \pi i \tau)\]
 correspond to small integer sums of dimensions of representations of the Monster group, the largest sporadic finite simple group: in particular, the smallest nontrivial representation of the Monster is of dimension $196883$, one less than the $q$ term of $j$.  Conway conjectured, and Borcherds proved, the following theorem:
 \subsubsection{Theorem (Monstrous Moonshine) (Borcherds (1992)) \cite{MR1172696}}
@@ -656,7 +658,7 @@ For the purposes of this talk, we define a \textit{binary tree} as follows:
   \end{itemize}
 
 \end{itemize}
-An important order on the leaves is an order confusingly called the \textit{preorder on the leaves}(\tk or maybe just the order induced by the preorder?  If there's a better name than preorder, and literally almost anything is better, I'll use that): it is the order such that, if $l$ and $r$ are descendants of the left and right child of any particular node, then $r<l$.
+An important order on the leaves is an order (confusingly, given the usual meaning of ``preorder'') called the \textit{preorder on the leaves}: it is the order such that, if $l$ and $r$ are descendants of the left and right child of any particular node, then $r<l$.
 
 We say that two trees are \textit{equivalent} if there is a bijection on their nodes preserving the tree structure as well as the ordering on the leaves; that is,
 \[\left.\Tree[ 1 2 ] \right. \ne \left.\Tree[ 2 1 ] \right. , \]
@@ -796,7 +798,7 @@ satisfying:
 \[\nu_{m+n-1}(Q_1 \infty_i Q_2) = \nu_m(Q_1) *_i \nu_n(Q_2) \cdot e^{-\Gamma(Q_1^{(i)},Q_2^{(0)},q_1^{(i)}) \cdot c}, \]
 where $c$ is the central charge and
 \[\Gamma(A,B,\alpha_0) \equiv \sum_{j=0}^\infty\frac{j^3-j}{12}\alpha_0^{-j}A_jB_j \pmod{A^2B+B^2A} \]
-is a power series in two local coordinates specifically chosen such that the Virasoro vertex algebra with central charge $c$ becomes a vertex algebra. (\tk I think this is what Huang is saying; in my notes and I think in the talk it was simply written as ``stuff'') 
+is a power series in two local coordinates specifically chosen such that the Virasoro vertex algebra with central charge $c$ becomes a geometric vertex algebra.
 \end{enumerate}
 Theorem (5.4.5, 7.2.2 in Huang's 2d conformal geometry): This category is isomorphic to the category of vertex operator algebras.
 
@@ -939,8 +941,6 @@ However, $Ran(X)$ does not have the correct properties for algebraic sheaves to 
 
 \subsubsection{Definition}
 A \textit{factorization algebra} is a sheaf $\Ff$ on $Ran(X)$ and a section $1 \in \Ff_1(X)$ as follows:
-
-(\tk I cannot understand my notes here and not a single book about this topic seems to actually be in the reading room so this almost certainly has some errors in it.  I'd like Pax to look it over but of course he's an undergrad so his email address is the only one I don't have)
 
 $\Ff$ has no sections supported on any subdiagonal, and there is an isomorphism
 \[\phi_{J/I}: j_{J/I}^*(\Ff_J) \rightarrow j_{J/I}^*(\boxtimes_{i \in I}\Ff_{f^{-1}(i)}). \]
