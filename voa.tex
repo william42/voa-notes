@@ -59,7 +59,6 @@ This document is a reconstruction based on my notes of the vertex operator algeb
 
 \subsection{Motivation}
 \label{sec:mot}
-(\tk can probably load this section with references, really)
 %nocites: Kac's for beginners book; FLM VOAs&Monster; BD Chiral algs; chiral Koszul 
 \nocite{MR1651389,MR996026,MR2058353,MR2891861}
 Monstrous Moonshine may not be one of the most difficult problems in mathematics, but it is perhaps one of the strangest.  The theory involves the observation that, with the exception of the constant term $744$\footnote{which can itself be explained using vertex operator algebras; instead of the Monster, it can be related to a vertex operator algebra obtained from the affine Lie algebra $\widehat{\mathfrak{e}_8}^3$; note that $744=3 \dim \mathfrak{e}_8$.}, the early Fourier terms of the modular $j$-invariant
@@ -163,7 +162,7 @@ and, in fact, for vertex algebra purposes it makes more sense to number formal d
 
 Recall the formal delta function from \ref{sec:formalpow}, defined as
 \[\delta(z,w)=\sum_{n \in \ZZ}z^nw^{-n-1}, \]
-(note that it is sometimes(\tk need to make my notation on this consistent) also denoted as $\delta(z-w)$) and the fact that it satisfies
+(note that it is sometimes also denoted as $\delta(z-w)$, ) and the fact that it satisfies
 \[(z-w)\delta(z,w)=0. \]
 \subsection{Fields and locality}
 Let $V$ be a vector space over $\CC$.  We define a \textit{field} to be an element
@@ -430,7 +429,6 @@ Then, there is a vertex algebra structure on $V$ given by the equation
 \[
   Y(a^{s_1}_{(j_1)}...a^{s_m}_{(j_m)}\vac,z)=\frac{1}{\prod_{r=1}^m(j_r-1)!} \normord{\prod_{r=1}^m \frac{\partial^{-j_r-1}}{\partial z^{j_r-1}}a^{s_r}(z)}.
 \]
-(\tk I should figure out how to make the $:$s bigger)
 
 \section{Lattice vertex algebras and affine algebras (Dustan Levenstein, April 20)}
 \label{sec:latticeaffine}
@@ -488,7 +486,7 @@ Note that this definition depends on the coordinates; there exists a coordinate-
 Define
 \[T(z) := \sum_{n \in \ZZ}L_nz^{-n-2}; \]
 then the Virasoro commutation relations can be summed up as
-\[[T(z),T(w)]=\frac{C}{12}\partial^3_w \delta(z,w)+zT(w)\partial_w\delta(z-w)+\partial_wT(w)\delta(z-w). \]
+\[[T(z),T(w)]=\frac{C}{12}\partial^3_w \delta(z,w)+zT(w)\partial_w\delta(z,w)+\partial_wT(w)\delta(z,w). \]
 In particular, $T(z)$ is local to itself.
 
 Let $c \in \CC$. To define the \textit{Virasoro vertex algebra} $Vir_c$, start with the subalgebra $\Der \Oo=\CC[[t]]\partial_t$ and the representation $\CC_c$ on which $\Der \Oo$ acts as $0$ and $C$ acts by $c$; we then have
@@ -824,7 +822,7 @@ The inclusion of the complement of the diagonal is denoted by $j : X^2 \setminus
 The space of $\Mm$-valued $\delta$ functions relates closely to the exceptional pushforward
 \[\Delta_!(\Mm)=\frac{\Omega_x \boxtimes \Mm (\infty \Delta)}{\Omega_X \boxtimes \Mm} \]
 using the map
-\[\frac{dz \boxtimes f}{(z-w)^n} \mapsto \frac{1}{(n-1)!} \partial^{n-1}_z \delta(z-w) \boxtimes f. \]
+\[\frac{dz \boxtimes f}{(z-w)^n} \mapsto \frac{1}{(n-1)!} \partial^{n-1}_z \delta(z,w) \boxtimes f. \]
 
 There is a surjective map
 \[\Res: \Delta_!\Mm \rightarrow \Delta_*\Mm \]
@@ -944,9 +942,8 @@ A \textit{factorization algebra} is a sheaf $\Ff$ on $Ran(X)$ and a section $1 \
 
 $\Ff$ has no sections supported on any subdiagonal, and there is an isomorphism
 \[\phi_{J/I}: j_{J/I}^*(\Ff_J) \rightarrow j_{J/I}^*(\boxtimes_{i \in I}\Ff_{f^{-1}(i)}). \]
-(\tk my notes say $\Ff_I$ for that $\FF_J$ but the latter is the one that makes basic sense; also there's no bigboxtimes so the notation is a stopgap)
 
-The functions $\phi_{J/I}$ should be functorial (\tk my notes say just ``Functoriality of $\phi_{J/I}$'' without any other mention of $\phi$ so I assume it's the aforementioned isos but not completely sure), and the unit works as follows: for any $f \in \Ff_1(U)$, the value \[1 \boxtimes f \in \Ff_1(U) \boxtimes \Ff_1(U) \subseteq \Ff_1 \boxtimes \Ff_1(U^2 \setminus \Delta) \simeq \Ff_2(U^2 \setminus \Delta)\] will correspond to a value
+The functions $\phi_{J/I}$ should be functorial, and the unit works as follows: for any $f \in \Ff_1(U)$, the value \[1 \boxtimes f \in \Ff_1(U) \boxtimes \Ff_1(U) \subseteq \Ff_1 \boxtimes \Ff_1(U^2 \setminus \Delta) \simeq \Ff_2(U^2 \setminus \Delta)\] will correspond to a value
 \[g \in \Ff_2(U^2) \subseteq \Ff_2(U^2 \setminus \Delta) \]
 such that \[\phi_{2/1}(g|_{U^2 \setminus \Delta})=(1 \boxtimes f)|_{U^2 \setminus \Delta}\] and
 \[\Delta_{2/1}^*(g)=f, \]
@@ -1139,7 +1136,7 @@ and these $\Vv_n^*$ will be the duals of sheaves $\Vv_n$ that constitute the fac
 \subsection{Conformal blocks in genus zero}
 Now, we fix $X=\PP^1$ and fix points $0 \in X, \infty \in X$ once and for all.  Given this, we pick a global coordinate $t$ on $X \setminus \infty$ such that $t=0$ corresponds to the point $0$ and $t=\infty$ corresponds to the point $\infty$.
 
-To calculate the conformal blocks for the sphere, first note that $U(V)=\Gamma(D^\times,h(\Vv \otimes \Omega))$ can be described explicitly by its action on $V$, as the completion of the span of the Fourier coefficients $A_{(n)}$ in $\End(V)$.  The subspace $\Gamma(\PP^1 \setminus 0,\Vv_0 \otimes Omega)$ will be the vector space spanned by $A_{(n)}$, where $A$ is homogeneous of degree $m$ and $n \le 2(m-1)$.  In particular, since $A_{(-1)}\vac=A$, applying the Lie algebra to $\vac$ gets $\bigoplus_{n>0}V_n$ and
+To calculate the conformal blocks for the sphere, first note that $U(V)=\Gamma(D^\times,h(\Vv \otimes \Omega))$ can be described explicitly by its action on $V$, as the completion of the span of the Fourier coefficients $A_{(n)}$ in $\End(V)$.  The subspace $\Gamma(\PP^1 \setminus 0,\Vv_0 \otimes \Omega)$ will be the vector space spanned by $A_{(n)}$, where $A$ is homogeneous of degree $m$ and $n \le 2(m-1)$\footnote{note that \cite{MR2082709} makes a mistake in the allowed values of $n$, one which leads to an incorrect definition}.  In particular, since $A_{(-1)}\vac=A$, applying the Lie algebra to $\vac$ gets $\bigoplus_{n>0}V_n$ and
 \[H(\PP^1,0,V)=V/V_{>0}\simeq \CC \vac. \]
 
 Let $\varphi_0:V \rightarrow \CC$ be such that $\varphi_0(\vac)=1, \varphi_0(V_{>0})=0$.  Then $\varphi_0$ spans $C(\PP^1,0,V)$.
@@ -1173,7 +1170,9 @@ This action produces $R(\mu_u)=e^{uL_1}(-u^{-2})^{L_0}$ as its action on $V$, so
 \[\langle \varphi,\Yy_0 \cdot C \rangle|_{D_\infty^\times}=\langle \varphi,Y(e^{uL_1}(-u^2)^{L_0}A,u^{-1})C \rangle, \]
 which can be made into a linear map $\widetilde{Y}: V \rightarrow \End V^\vee[[u^{-1}]]$ making $V^\vee$ into a $V$-module, called the \textit{contragredient module}.  A similar module structure can be found for the graded dual of any module $M$ in a similar way.
 
-(\tk should I put the proof using the involution here?  It's the proof I used for my notes.)
+To prove this module structure is indeed a module structure, we can note an involution in the Lie algebra $\Gamma(\CC^\times,h(\Vv \otimes \Omega))$: this is the vector space spanned by all elements $A_{(n)}$.  The involution $\tau$ is defined using the map $t \mapsto t^{-1}$ using the above relation between nearby local coordinates; for $A \in V$, if $\deg A=\Delta$, then
+\[\tau(A_{(n)})=(-1)^{\Delta+1} \sum_{m \ge 0} \frac{1}{m!}(L_1^mA)_{(2\Delta-n-m-2)}. \]
+(This calculation also implies the global sections on $\PP^1 \setminus 0$ from the more familiar $\PP^1 \setminus \infty$) The adjoint of this involution's action on $V$ provides an action of $\Gamma(\CC^\times,h(\Vv \otimes \Omega))$ on $V^\vee$; by showing the involution also preserves normal-ordered products, a theorem related to the reconstruction theorem will show that this necessarily extends to a module structure on $V^\vee$.
 
 \subsubsection{Conformal blocks as operadic maps}
 Consider $C(\PP^1,(0,\infty),(V,V^\vee))$, and $\Phi_0: V \otimes V^\vee \rightarrow \CC$ the natural pairing.  $\Phi_0$ is a conformal block, as $\Yy$ becoming $\widetilde{Y}$ is actually the definition of $\widetilde{Y}$.  Then,
@@ -1205,7 +1204,8 @@ The proof proceeds as follows:
 The Poincaré-Birkhoff-Witt theorem produces an isomorphism
 \[\MM_i^k=U((t-x_i)^{-1}\gf[(t-x_i)^{-1}]) \cdot M_i \simeq V_k(\gf) \otimes M_i \]
 
-A formal version of Čech cohomology leads to these identities:
+%mildly upset that I can't use Unicode here even with XeTeX
+A formal version of \v{C}ech cohomology leads to these identities:
 \begin{align}
   \bigoplus_i \CC((t-x_i)) &= \bigoplus_i \CC[[t-x_i]] + \CC[\PP^1 \setminus \{x_i\}]\label{cech1}\\
   \CC &= \bigoplus_i \CC[[t-x_i]] \cap \CC[\PP^1 \setminus \{x_i\}].\label{cech2}
